@@ -133,7 +133,7 @@ func (inst *repositoriesHandler) doGetList() error {
 	if err != nil {
 		return err
 	}
-	inst.responseBody.RepositoryList = all
+	inst.responseBody.Repositories = all
 	return nil
 }
 

@@ -1,8 +1,11 @@
 package gie
 
 import (
+	"embed"
+
 	"github.com/bitwormhole/gie/gen"
-	startercli "github.com/bitwormhole/starter-cli"
+	"github.com/bitwormhole/starter"
+	clistarter "github.com/bitwormhole/starter-cli"
 	ginstarter "github.com/bitwormhole/starter-gin"
 	"github.com/bitwormhole/starter/application"
 	"github.com/bitwormhole/starter/collection"
@@ -11,21 +14,24 @@ import (
 const (
 	myModuleName = "github.com/bitwormhole/gie"
 	myModuleVer  = "v0.0.1"
-	myModuleRev  = 1
+	myModuleRev  = 3
 )
 
+//go:embed src/main/resources
+var theMainRes embed.FS
+
 // Module 导出模块【github.com/bitwormhole/gie】
-func Module(res collection.Resources) application.Module {
+func Module() application.Module {
 
 	mb := application.ModuleBuilder{}
 	mb.Name(myModuleName).Version(myModuleVer).Revision(myModuleRev)
-	mb.Resources(res)
+	mb.Resources(collection.LoadEmbedResources(&theMainRes, "src/main/resources"))
 	mb.OnMount(gen.ExportConfigGIE)
 
-	mb.Dependency(startercli.Module())
-	mb.Dependency(startercli.ModuleWithBasicCommands())
+	mb.Dependency(starter.Module())
 	mb.Dependency(ginstarter.Module())
 	mb.Dependency(ginstarter.ModuleWithDevtools())
+	mb.Dependency(clistarter.Module())
 
 	return mb.Create()
 }

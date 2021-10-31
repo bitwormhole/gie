@@ -9,7 +9,7 @@ type Repositories struct {
 	// Name string
 	// Path string
 
-	RepositoryList []*dto.Repository
+	Repositories []*dto.Repository
 }
 
 // RepositoryClone  ...

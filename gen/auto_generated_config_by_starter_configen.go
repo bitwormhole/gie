@@ -145,10 +145,37 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 		return err
 	}
 
-	// component: com13-controller0x0b3063.RepositoriesController
+	// component: com13-controller0x0b3063.PlansController
 	cominfobuilder.Next()
-	cominfobuilder.ID("com13-controller0x0b3063.RepositoriesController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.ID("com13-controller0x0b3063.PlansController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.Factory((&comFactory4pComPlansController{}).init())
+	err = cominfobuilder.CreateTo(cb)
+	if err != nil {
+		return err
+	}
+
+	// component: com14-controller0x0b3063.RepositoriesController
+	cominfobuilder.Next()
+	cominfobuilder.ID("com14-controller0x0b3063.RepositoriesController").Class("rest-controller").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComRepositoriesController{}).init())
+	err = cominfobuilder.CreateTo(cb)
+	if err != nil {
+		return err
+	}
+
+	// component: com15-controller0x0b3063.TasksController
+	cominfobuilder.Next()
+	cominfobuilder.ID("com15-controller0x0b3063.TasksController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.Factory((&comFactory4pComTasksController{}).init())
+	err = cominfobuilder.CreateTo(cb)
+	if err != nil {
+		return err
+	}
+
+	// component: com16-controller0x0b3063.UsersController
+	cominfobuilder.Next()
+	cominfobuilder.ID("com16-controller0x0b3063.UsersController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.Factory((&comFactory4pComUsersController{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
@@ -163,27 +190,27 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 		return err
 	}
 
-	// component: com15-commands0x41f47d.FindRepo
+	// component: com18-commands0x41f47d.FindRepo
 	cominfobuilder.Next()
-	cominfobuilder.ID("com15-commands0x41f47d.FindRepo").Class("cli-handler").Aliases("").Scope("")
+	cominfobuilder.ID("com18-commands0x41f47d.FindRepo").Class("cli-handler").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComFindRepo{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com16-commands0x41f47d.Roots
+	// component: com19-commands0x41f47d.Roots
 	cominfobuilder.Next()
-	cominfobuilder.ID("com16-commands0x41f47d.Roots").Class("cli-handler").Aliases("").Scope("")
+	cominfobuilder.ID("com19-commands0x41f47d.Roots").Class("cli-handler").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComRoots{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com17-commands0x41f47d.Shell
+	// component: com20-commands0x41f47d.Shell
 	cominfobuilder.Next()
-	cominfobuilder.ID("com17-commands0x41f47d.Shell").Class("cli-handler").Aliases("").Scope("")
+	cominfobuilder.ID("com20-commands0x41f47d.Shell").Class("cli-handler").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComShell{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
@@ -226,15 +253,6 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 		return err
 	}
 
-	// component: qin-zong-service
-	cominfobuilder.Next()
-	cominfobuilder.ID("qin-zong-service").Class("").Aliases("").Scope("")
-	cominfobuilder.Factory((&comFactory4pComQinZongServiceImpl{}).init())
-	err = cominfobuilder.CreateTo(cb)
-	if err != nil {
-		return err
-	}
-
 	// component: repository-service
 	cominfobuilder.Next()
 	cominfobuilder.ID("repository-service").Class("").Aliases("").Scope("")
@@ -244,9 +262,9 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 		return err
 	}
 
-	// component: com24-handlers0x13e7bb.RootHandler
+	// component: com26-handlers0x13e7bb.RootHandler
 	cominfobuilder.Next()
-	cominfobuilder.ID("com24-handlers0x13e7bb.RootHandler").Class("vfs-handler").Aliases("").Scope("")
+	cominfobuilder.ID("com26-handlers0x13e7bb.RootHandler").Class("vfs-handler").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComRootHandler{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
@@ -1097,7 +1115,61 @@ func (inst * comFactory4pComFileSystemController) getterForFieldServiceSelector 
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComRepositoriesController : the factory of component: com13-controller0x0b3063.RepositoriesController
+// comFactory4pComPlansController : the factory of component: com13-controller0x0b3063.PlansController
+type comFactory4pComPlansController struct {
+
+    mPrototype * controller0x0b3063.PlansController
+
+	
+
+}
+
+func (inst * comFactory4pComPlansController) init() application.ComponentFactory {
+
+	
+
+
+	inst.mPrototype = inst.newObject()
+    return inst
+}
+
+func (inst * comFactory4pComPlansController) newObject() * controller0x0b3063.PlansController {
+	return & controller0x0b3063.PlansController {}
+}
+
+func (inst * comFactory4pComPlansController) castObject(instance application.ComponentInstance) * controller0x0b3063.PlansController {
+	return instance.Get().(*controller0x0b3063.PlansController)
+}
+
+func (inst * comFactory4pComPlansController) GetPrototype() lang.Object {
+	return inst.mPrototype
+}
+
+func (inst * comFactory4pComPlansController) NewInstance() application.ComponentInstance {
+	return config.SimpleInstance(inst, inst.newObject())
+}
+
+func (inst * comFactory4pComPlansController) AfterService() application.ComponentAfterService {
+	return inst
+}
+
+func (inst * comFactory4pComPlansController) Init(instance application.ComponentInstance) error {
+	return nil
+}
+
+func (inst * comFactory4pComPlansController) Destroy(instance application.ComponentInstance) error {
+	return nil
+}
+
+func (inst * comFactory4pComPlansController) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
+	return nil
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+// comFactory4pComRepositoriesController : the factory of component: com14-controller0x0b3063.RepositoriesController
 type comFactory4pComRepositoriesController struct {
 
     mPrototype * controller0x0b3063.RepositoriesController
@@ -1160,7 +1232,7 @@ func (inst * comFactory4pComRepositoriesController) getterForFieldServiceSelecto
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "com13-controller0x0b3063.RepositoriesController")
+		eb.Set("com", "com14-controller0x0b3063.RepositoriesController")
 		eb.Set("field", "Service")
 		eb.Set("type1", "?")
 		eb.Set("type2", "service0x21db44.RepositoryService")
@@ -1168,6 +1240,114 @@ func (inst * comFactory4pComRepositoriesController) getterForFieldServiceSelecto
 		return nil
 	}
 	return o2
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+// comFactory4pComTasksController : the factory of component: com15-controller0x0b3063.TasksController
+type comFactory4pComTasksController struct {
+
+    mPrototype * controller0x0b3063.TasksController
+
+	
+
+}
+
+func (inst * comFactory4pComTasksController) init() application.ComponentFactory {
+
+	
+
+
+	inst.mPrototype = inst.newObject()
+    return inst
+}
+
+func (inst * comFactory4pComTasksController) newObject() * controller0x0b3063.TasksController {
+	return & controller0x0b3063.TasksController {}
+}
+
+func (inst * comFactory4pComTasksController) castObject(instance application.ComponentInstance) * controller0x0b3063.TasksController {
+	return instance.Get().(*controller0x0b3063.TasksController)
+}
+
+func (inst * comFactory4pComTasksController) GetPrototype() lang.Object {
+	return inst.mPrototype
+}
+
+func (inst * comFactory4pComTasksController) NewInstance() application.ComponentInstance {
+	return config.SimpleInstance(inst, inst.newObject())
+}
+
+func (inst * comFactory4pComTasksController) AfterService() application.ComponentAfterService {
+	return inst
+}
+
+func (inst * comFactory4pComTasksController) Init(instance application.ComponentInstance) error {
+	return nil
+}
+
+func (inst * comFactory4pComTasksController) Destroy(instance application.ComponentInstance) error {
+	return nil
+}
+
+func (inst * comFactory4pComTasksController) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
+	return nil
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+// comFactory4pComUsersController : the factory of component: com16-controller0x0b3063.UsersController
+type comFactory4pComUsersController struct {
+
+    mPrototype * controller0x0b3063.UsersController
+
+	
+
+}
+
+func (inst * comFactory4pComUsersController) init() application.ComponentFactory {
+
+	
+
+
+	inst.mPrototype = inst.newObject()
+    return inst
+}
+
+func (inst * comFactory4pComUsersController) newObject() * controller0x0b3063.UsersController {
+	return & controller0x0b3063.UsersController {}
+}
+
+func (inst * comFactory4pComUsersController) castObject(instance application.ComponentInstance) * controller0x0b3063.UsersController {
+	return instance.Get().(*controller0x0b3063.UsersController)
+}
+
+func (inst * comFactory4pComUsersController) GetPrototype() lang.Object {
+	return inst.mPrototype
+}
+
+func (inst * comFactory4pComUsersController) NewInstance() application.ComponentInstance {
+	return config.SimpleInstance(inst, inst.newObject())
+}
+
+func (inst * comFactory4pComUsersController) AfterService() application.ComponentAfterService {
+	return inst
+}
+
+func (inst * comFactory4pComUsersController) Init(instance application.ComponentInstance) error {
+	return nil
+}
+
+func (inst * comFactory4pComUsersController) Destroy(instance application.ComponentInstance) error {
+	return nil
+}
+
+func (inst * comFactory4pComUsersController) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
+	return nil
 }
 
 
@@ -1259,7 +1439,7 @@ func (inst * comFactory4pComApplicationUpdateServiceImpl) getterForFieldRemoteCo
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComFindRepo : the factory of component: com15-commands0x41f47d.FindRepo
+// comFactory4pComFindRepo : the factory of component: com18-commands0x41f47d.FindRepo
 type comFactory4pComFindRepo struct {
 
     mPrototype * commands0x41f47d.FindRepo
@@ -1313,7 +1493,7 @@ func (inst * comFactory4pComFindRepo) Inject(instance application.ComponentInsta
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComRoots : the factory of component: com16-commands0x41f47d.Roots
+// comFactory4pComRoots : the factory of component: com19-commands0x41f47d.Roots
 type comFactory4pComRoots struct {
 
     mPrototype * commands0x41f47d.Roots
@@ -1367,7 +1547,7 @@ func (inst * comFactory4pComRoots) Inject(instance application.ComponentInstance
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComShell : the factory of component: com17-commands0x41f47d.Shell
+// comFactory4pComShell : the factory of component: com20-commands0x41f47d.Shell
 type comFactory4pComShell struct {
 
     mPrototype * commands0x41f47d.Shell
@@ -1766,60 +1946,6 @@ func (inst * comFactory4pComGuiService) getterForFieldPortSelector (context appl
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComQinZongServiceImpl : the factory of component: qin-zong-service
-type comFactory4pComQinZongServiceImpl struct {
-
-    mPrototype * service0x21db44.QinZongServiceImpl
-
-	
-
-}
-
-func (inst * comFactory4pComQinZongServiceImpl) init() application.ComponentFactory {
-
-	
-
-
-	inst.mPrototype = inst.newObject()
-    return inst
-}
-
-func (inst * comFactory4pComQinZongServiceImpl) newObject() * service0x21db44.QinZongServiceImpl {
-	return & service0x21db44.QinZongServiceImpl {}
-}
-
-func (inst * comFactory4pComQinZongServiceImpl) castObject(instance application.ComponentInstance) * service0x21db44.QinZongServiceImpl {
-	return instance.Get().(*service0x21db44.QinZongServiceImpl)
-}
-
-func (inst * comFactory4pComQinZongServiceImpl) GetPrototype() lang.Object {
-	return inst.mPrototype
-}
-
-func (inst * comFactory4pComQinZongServiceImpl) NewInstance() application.ComponentInstance {
-	return config.SimpleInstance(inst, inst.newObject())
-}
-
-func (inst * comFactory4pComQinZongServiceImpl) AfterService() application.ComponentAfterService {
-	return inst
-}
-
-func (inst * comFactory4pComQinZongServiceImpl) Init(instance application.ComponentInstance) error {
-	return inst.castObject(instance).Init()
-}
-
-func (inst * comFactory4pComQinZongServiceImpl) Destroy(instance application.ComponentInstance) error {
-	return nil
-}
-
-func (inst * comFactory4pComQinZongServiceImpl) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
-	return nil
-}
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-
 // comFactory4pComRepositoryServiceImpl : the factory of component: repository-service
 type comFactory4pComRepositoryServiceImpl struct {
 
@@ -1897,7 +2023,7 @@ func (inst * comFactory4pComRepositoryServiceImpl) getterForFieldDaoSelector (co
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComRootHandler : the factory of component: com24-handlers0x13e7bb.RootHandler
+// comFactory4pComRootHandler : the factory of component: com26-handlers0x13e7bb.RootHandler
 type comFactory4pComRootHandler struct {
 
     mPrototype * handlers0x13e7bb.RootHandler

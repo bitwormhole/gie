@@ -43,20 +43,20 @@ func (inst *EnvironmentImpl) GetHome() fs.Path {
 
 func (inst *EnvironmentImpl) loadHomePath() (fs.Path, error) {
 
-	const KEY = "GIE_HOME"
+	const KEY = "BITWORMHOLE_HOME"
 
 	ctx := inst.Context
-	home, err := ctx.GetEnvironment().GetEnv(KEY)
+	bithome, err := ctx.GetEnvironment().GetEnv(KEY)
 	if err != nil {
 		return nil, err
 	}
 
-	path := fs.Default().GetPath(home)
-	if !path.Exists() {
-		return nil, errors.New("the GIE_HOME path is not exists. path=" + home)
+	dir := fs.Default().GetPath(bithome).GetChild("home/gie")
+	if !dir.IsDir() {
+		return nil, errors.New("the GIE home dir is not exists. path=" + bithome)
 	}
 
-	inst.dbaHomeString = home
-	inst.dbaHomePath = path
-	return path, nil
+	inst.dbaHomeString = dir.Path()
+	inst.dbaHomePath = dir
+	return dir, nil
 }

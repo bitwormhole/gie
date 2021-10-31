@@ -75,12 +75,6 @@ type pComGuiService struct {
 }
 
 
-type pComQinZongServiceImpl struct {
-	instance *service0x21db44.QinZongServiceImpl
-	 markup0x23084a.Component `id:"qin-zong-service" initMethod:"Init"`
-}
-
-
 type pComRepositoryServiceImpl struct {
 	instance *service0x21db44.RepositoryServiceImpl
 	 markup0x23084a.Component `id:"repository-service"`

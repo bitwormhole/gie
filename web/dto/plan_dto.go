@@ -1,5 +1,5 @@
 package dto
 
-type User struct {
+type Plan struct {
 	BaseDTO
 }

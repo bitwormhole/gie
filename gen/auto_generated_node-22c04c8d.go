@@ -35,9 +35,27 @@ type pComFileSystemController struct {
 }
 
 
+type pComPlansController struct {
+	instance *controller0x0b3063.PlansController
+	 markup0x23084a.RestController `class:"rest-controller"`
+}
+
+
 type pComRepositoriesController struct {
 	instance *controller0x0b3063.RepositoriesController
 	 markup0x23084a.RestController `class:"rest-controller"`
 	Service service0x21db44.RepositoryService `inject:"#repository-service"`
+}
+
+
+type pComTasksController struct {
+	instance *controller0x0b3063.TasksController
+	 markup0x23084a.RestController `class:"rest-controller"`
+}
+
+
+type pComUsersController struct {
+	instance *controller0x0b3063.UsersController
+	 markup0x23084a.RestController `class:"rest-controller"`
 }
 
