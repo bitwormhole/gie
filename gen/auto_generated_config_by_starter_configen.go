@@ -1361,7 +1361,6 @@ type comFactory4pComApplicationUpdateServiceImpl struct {
 
 	
 	mEnvSelector config.InjectionSelector
-	mRemoteConfigURLSelector config.InjectionSelector
 
 }
 
@@ -1369,7 +1368,6 @@ func (inst * comFactory4pComApplicationUpdateServiceImpl) init() application.Com
 
 	
 	inst.mEnvSelector = config.NewInjectionSelector("#env",nil)
-	inst.mRemoteConfigURLSelector = config.NewInjectionSelector("${gie.packages.repository.url}",nil)
 
 
 	inst.mPrototype = inst.newObject()
@@ -1408,7 +1406,6 @@ func (inst * comFactory4pComApplicationUpdateServiceImpl) Inject(instance applic
 	
 	obj := inst.castObject(instance)
 	obj.Env = inst.getterForFieldEnvSelector(context)
-	obj.RemoteConfigURL = inst.getterForFieldRemoteConfigURLSelector(context)
 	return context.LastError()
 }
 
@@ -1428,11 +1425,6 @@ func (inst * comFactory4pComApplicationUpdateServiceImpl) getterForFieldEnvSelec
 		return nil
 	}
 	return o2
-}
-
-//getterForFieldRemoteConfigURLSelector
-func (inst * comFactory4pComApplicationUpdateServiceImpl) getterForFieldRemoteConfigURLSelector (context application.InstanceContext) string {
-    return inst.mRemoteConfigURLSelector.GetString(context)
 }
 
 

@@ -12,7 +12,6 @@ import (
 	handlers0x13e7bb "github.com/bitwormhole/gie/service/vfs/handlers"
 	cli0xf30272 "github.com/bitwormhole/starter-cli/cli"
 	application0x67f6c5 "github.com/bitwormhole/starter/application"
-	fs0x8698bb "github.com/bitwormhole/starter/io/fs"
 	markup0x23084a "github.com/bitwormhole/starter/markup"
 )
 
@@ -20,8 +19,6 @@ type pComApplicationUpdateServiceImpl struct {
 	instance *service0x21db44.ApplicationUpdateServiceImpl
 	 markup0x23084a.Component `id:"application-update-service" initMethod:"Init"`
 	Env app0x1d5ac8.Environment `inject:"#env"`
-	RemoteConfigURL string `inject:"${gie.packages.repository.url}"`
-	localConfigPath fs0x8698bb.Path ``
 }
 
 
