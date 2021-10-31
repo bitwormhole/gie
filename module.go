@@ -13,8 +13,8 @@ import (
 
 const (
 	myModuleName = "github.com/bitwormhole/gie"
-	myModuleVer  = "v0.0.1"
-	myModuleRev  = 3
+	myModuleVer  = "v0.0.2"
+	myModuleRev  = 4
 )
 
 //go:embed src/main/resources
