@@ -8,6 +8,7 @@ import (
 
 	"github.com/bitwormhole/gie"
 	"github.com/bitwormhole/starter"
+	"github.com/bitwormhole/starter/application"
 	"github.com/bitwormhole/starter/collection"
 	"github.com/bitwormhole/starter/vlog"
 )
@@ -16,16 +17,6 @@ import (
 func Run(b *Bootstrap) error {
 
 	err := b.loadArgs()
-	if err != nil {
-		return err
-	}
-
-	err = b.loadMode()
-	if err != nil {
-		return err
-	}
-
-	err = b.loadAction()
 	if err != nil {
 		return err
 	}
@@ -43,12 +34,13 @@ func Default() *Bootstrap {
 	b.Arguments = os.Args
 	b.Targets = make(map[string]ModuleFactory)
 
-	b.Targets["agent:run"] = &AgentRunTargetModuleFactory{}
-	b.Targets["server:start"] = &ServerStartTargetModuleFactory{}
-	b.Targets["server:stop"] = &ServerStopTargetModuleFactory{}
-	b.Targets["installer:install"] = &InstallerInstallTargetModuleFactory{}
-	b.Targets["installer:update"] = &InstallerUpdateTargetModuleFactory{}
-	b.Targets["installer:uninstall"] = &InstallerUninstallTargetModuleFactory{}
+	b.Targets["run:agent"] = &AgentRunTargetModuleFactory{}
+	b.Targets["start:server"] = &ServerStartTargetModuleFactory{}
+	b.Targets["stop:server"] = &ServerStopTargetModuleFactory{}
+	b.Targets["install:self"] = &InstallerInstallTargetModuleFactory{}
+	b.Targets["update:self"] = &InstallerUpdateTargetModuleFactory{}
+	b.Targets["uninstall:self"] = &InstallerUninstallTargetModuleFactory{}
+	b.Targets["help"] = &HelpTargetModuleFactory{boot: b}
 
 	return b
 }
@@ -57,34 +49,43 @@ func Default() *Bootstrap {
 
 // Bootstrap 是 GieApp 的启动器
 type Bootstrap struct {
-	Action    string
-	Mode      string
-	Arguments []string
+	ActionAndMode string // 'action:mode'
+	Arguments     []string
 
 	FlagVersion bool
+
+	MainModule        application.Module
+	MainModuleFactory ModuleFactory
 
 	// key='mode:action'
 	Targets map[string]ModuleFactory
 }
 
+func (inst *Bootstrap) GetMainModule() (application.Module, error) {
+
+	mm := inst.MainModule
+	if mm != nil {
+		return mm, nil
+	}
+
+	factory := inst.MainModuleFactory
+	if factory == nil {
+		return nil, errors.New("no main module factory")
+	}
+
+	mm = factory.GetModule()
+	inst.MainModule = mm
+	return mm, nil
+}
+
 func (inst *Bootstrap) loadArgs() error {
 
-	// command like 'gie [action] --mode [mode]'
+	// command like 'gie mode:action'
 
 	args := collection.InitArguments(inst.Arguments)
 	reader := args.NewReader()
-	mode := inst.Mode
-	action := inst.Action
 
 	// flags
-
-	flagMode := reader.GetFlag("--mode")
-	if flagMode.Exists() {
-		value, ok := flagMode.Pick(1)
-		if ok {
-			mode = value
-		}
-	}
 
 	flagVersion := reader.GetFlag("--version")
 	inst.FlagVersion = flagVersion.Exists()
@@ -94,25 +95,11 @@ func (inst *Bootstrap) loadArgs() error {
 	reader.PickNext()              // arg0
 	value, ok := reader.PickNext() // arg1
 	if ok {
-		action = value
+		inst.ActionAndMode = value
+	} else {
+		inst.ActionAndMode = "help:help"
 	}
 
-	inst.Action = action
-	inst.Mode = mode
-	return nil
-}
-
-func (inst *Bootstrap) loadAction() error {
-	if inst.Action == "" {
-		inst.Action = "run"
-	}
-	return nil
-}
-
-func (inst *Bootstrap) loadMode() error {
-	if inst.Mode == "" {
-		inst.Mode = "agent"
-	}
 	return nil
 }
 
@@ -128,10 +115,13 @@ func (inst *Bootstrap) runPrintVersion() error {
 
 func (inst *Bootstrap) run() error {
 
-	target := inst.Mode + ":" + inst.Action
+	target := inst.ActionAndMode
 	moduleFactory := inst.Targets[target]
 	if moduleFactory == nil {
-		return errors.New("unsupported target: [" + target + "]")
+		moduleFactory = inst.Targets["help"]
+		if moduleFactory == nil {
+			return errors.New("unsupported target: [" + target + "]")
+		}
 	}
 
 	vlog.Info("GIE boot(" + target + ")")

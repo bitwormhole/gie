@@ -16,8 +16,8 @@ import (
 
 const (
 	myModuleName = "github.com/bitwormhole/gie"
-	myModuleVer  = "v0.0.3"
-	myModuleRev  = 7
+	myModuleVer  = "v0.0.4"
+	myModuleRev  = 8
 )
 
 //go:embed src/main/resources
@@ -74,10 +74,11 @@ func ModuleForAgent() application.Module {
 	mb.OnMount(agent.ExportConfigForGieAgent)
 
 	mb.Dependency(starter.Module())
-	// mb.Dependency(ginstarter.Module())
-	// mb.Dependency(ginstarter.ModuleWithDevtools())
 	mb.Dependency(clistarter.Module())
 	mb.Dependency(clistarter.ModuleWithBasicCommands())
+
+	// mb.Dependency(ginstarter.Module())
+	// mb.Dependency(ginstarter.ModuleWithDevtools())
 	//	mb.Dependency(bpm.Module())
 
 	return mb.Create()
@@ -119,6 +120,29 @@ func ModuleForUninstall() application.Module {
 	mb.Dependency(clistarter.Module())
 	mb.Dependency(clistarter.ModuleWithBasicCommands())
 	//	mb.Dependency(bpm.Module())
+
+	return mb.Create()
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+// ModuleForHelp 导出模块【github.com/bitwormhole/gie#help】
+func ModuleForHelp() application.Module {
+
+	mb := application.ModuleBuilder{}
+	mb.Name(myModuleName + "#help").Version(myModuleVer).Revision(myModuleRev)
+	mb.Resources(collection.LoadEmbedResources(&theMainRes, "src/main/resources"))
+
+	mb.OnMount(func(cb application.ConfigBuilder) error {
+		return nil
+	})
+
+	// mb.Dependency(starter.Module())
+	// mb.Dependency(ginstarter.Module())
+	// mb.Dependency(ginstarter.ModuleWithDevtools())
+	// mb.Dependency(clistarter.Module())
+	// mb.Dependency(clistarter.ModuleWithBasicCommands())
+	// mb.Dependency(bpm.Module())
 
 	return mb.Create()
 }
