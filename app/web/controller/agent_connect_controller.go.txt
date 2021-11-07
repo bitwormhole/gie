@@ -1,0 +1,103 @@
+package controller
+
+import (
+	"net/http"
+
+	"github.com/bitwormhole/gie/app/service"
+	"github.com/bitwormhole/gie/app/web/vo"
+	"github.com/bitwormhole/starter-gin/glass"
+	"github.com/bitwormhole/starter/markup"
+	"github.com/gin-gonic/gin"
+)
+
+// AgentLinkController ...
+type AgentLinkController struct {
+	markup.RestController `class:"rest-controller"`
+
+	ALService service.AgentLinkService `inject:"#agent-link-service"`
+}
+
+func (inst *AgentLinkController) _Impl() glass.Controller {
+	return inst
+}
+
+// Init ...
+func (inst *AgentLinkController) Init(ec glass.EngineConnection) error {
+
+	ec = ec.RequestMapping("/api/agent.v1/")
+
+	ec.Handle(http.MethodDelete, ":id", inst.doDelete)
+	ec.Handle(http.MethodGet, ":id", inst.doGet)
+	ec.Handle(http.MethodPut, ":id", inst.doPut)
+	ec.Handle(http.MethodPost, "", inst.doPost)
+
+	return nil
+}
+
+func (inst *AgentLinkController) doGet(c *gin.Context) {
+	h := Handler{controller: inst}
+	if h.open(c) {
+		h.err = h.doGet()
+	}
+	h.send()
+}
+
+func (inst *AgentLinkController) doPut(c *gin.Context) {
+	h := Handler{controller: inst}
+	if h.open(c) {
+		h.err = h.doPut()
+	}
+	h.send()
+}
+
+func (inst *AgentLinkController) doPost(c *gin.Context) {
+	h := Handler{controller: inst}
+	if h.open(c) {
+		h.err = h.doPost()
+	}
+	h.send()
+}
+
+func (inst *AgentLinkController) doDelete(c *gin.Context) {
+	h := Handler{controller: inst}
+	if h.open(c) {
+		h.err = h.doDelete()
+	}
+	h.send()
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+type Handler struct {
+	baseHandler
+
+	controller *AgentLinkController
+	bodyRx     vo.AgentLink
+	bodyTx     vo.AgentLink
+}
+
+func (inst *Handler) open(c *gin.Context) bool {
+	inst.context = c
+	inst.id = c.Param("id")
+	inst.status = http.StatusOK
+	inst.rx = &inst.bodyRx
+	inst.tx = &inst.bodyTx
+	inst.txHead = &inst.bodyTx.BaseVO
+	return true
+}
+
+func (inst *Handler) doGet() error {
+	return inst.controller.ALService.FetchMessage(&inst.bodyRx, &inst.bodyTx)
+}
+
+func (inst *Handler) doPost() error {
+	return inst.controller.ALService.RegisterAgent(&inst.bodyRx, &inst.bodyTx)
+}
+
+func (inst *Handler) doPut() error {
+	return inst.controller.ALService.DispatchMessage(&inst.bodyRx, &inst.bodyTx)
+}
+
+func (inst *Handler) doDelete() error {
+	return inst.controller.ALService.UnregisterAgent(&inst.bodyRx, &inst.bodyTx)
+}
