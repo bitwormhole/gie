@@ -325,18 +325,27 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 		return err
 	}
 
-	// component: com33-controller0x290ce7.TasksController
+	// component: com33-controller0x290ce7.SecurityGateController
 	cominfobuilder.Next()
-	cominfobuilder.ID("com33-controller0x290ce7.TasksController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.ID("com33-controller0x290ce7.SecurityGateController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.Factory((&comFactory4pComSecurityGateController{}).init())
+	err = cominfobuilder.CreateTo(cb)
+	if err != nil {
+		return err
+	}
+
+	// component: com34-controller0x290ce7.TasksController
+	cominfobuilder.Next()
+	cominfobuilder.ID("com34-controller0x290ce7.TasksController").Class("rest-controller").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComTasksController{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com34-controller0x290ce7.UsersController
+	// component: com35-controller0x290ce7.UsersController
 	cominfobuilder.Next()
-	cominfobuilder.ID("com34-controller0x290ce7.UsersController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.ID("com35-controller0x290ce7.UsersController").Class("rest-controller").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComUsersController{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
@@ -2567,7 +2576,71 @@ func (inst * comFactory4pComRepositoriesController) getterForFieldServiceSelecto
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComTasksController : the factory of component: com33-controller0x290ce7.TasksController
+// comFactory4pComSecurityGateController : the factory of component: com33-controller0x290ce7.SecurityGateController
+type comFactory4pComSecurityGateController struct {
+
+    mPrototype * controller0x290ce7.SecurityGateController
+
+	
+	mBindSelector config.InjectionSelector
+
+}
+
+func (inst * comFactory4pComSecurityGateController) init() application.ComponentFactory {
+
+	
+	inst.mBindSelector = config.NewInjectionSelector("${server.bind}",nil)
+
+
+	inst.mPrototype = inst.newObject()
+    return inst
+}
+
+func (inst * comFactory4pComSecurityGateController) newObject() * controller0x290ce7.SecurityGateController {
+	return & controller0x290ce7.SecurityGateController {}
+}
+
+func (inst * comFactory4pComSecurityGateController) castObject(instance application.ComponentInstance) * controller0x290ce7.SecurityGateController {
+	return instance.Get().(*controller0x290ce7.SecurityGateController)
+}
+
+func (inst * comFactory4pComSecurityGateController) GetPrototype() lang.Object {
+	return inst.mPrototype
+}
+
+func (inst * comFactory4pComSecurityGateController) NewInstance() application.ComponentInstance {
+	return config.SimpleInstance(inst, inst.newObject())
+}
+
+func (inst * comFactory4pComSecurityGateController) AfterService() application.ComponentAfterService {
+	return inst
+}
+
+func (inst * comFactory4pComSecurityGateController) Init(instance application.ComponentInstance) error {
+	return nil
+}
+
+func (inst * comFactory4pComSecurityGateController) Destroy(instance application.ComponentInstance) error {
+	return nil
+}
+
+func (inst * comFactory4pComSecurityGateController) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
+	
+	obj := inst.castObject(instance)
+	obj.Bind = inst.getterForFieldBindSelector(context)
+	return context.LastError()
+}
+
+//getterForFieldBindSelector
+func (inst * comFactory4pComSecurityGateController) getterForFieldBindSelector (context application.InstanceContext) string {
+    return inst.mBindSelector.GetString(context)
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+// comFactory4pComTasksController : the factory of component: com34-controller0x290ce7.TasksController
 type comFactory4pComTasksController struct {
 
     mPrototype * controller0x290ce7.TasksController
@@ -2630,7 +2703,7 @@ func (inst * comFactory4pComTasksController) getterForFieldTasksSelector (contex
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "com33-controller0x290ce7.TasksController")
+		eb.Set("com", "com34-controller0x290ce7.TasksController")
 		eb.Set("field", "Tasks")
 		eb.Set("type1", "?")
 		eb.Set("type2", "service0xa10cab.TaskService")
@@ -2644,7 +2717,7 @@ func (inst * comFactory4pComTasksController) getterForFieldTasksSelector (contex
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComUsersController : the factory of component: com34-controller0x290ce7.UsersController
+// comFactory4pComUsersController : the factory of component: com35-controller0x290ce7.UsersController
 type comFactory4pComUsersController struct {
 
     mPrototype * controller0x290ce7.UsersController

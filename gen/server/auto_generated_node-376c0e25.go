@@ -13,6 +13,7 @@ import (
 	vfs0xa225e7 "github.com/bitwormhole/gie/app/service/vfs"
 	handlers0x6bcb69 "github.com/bitwormhole/gie/app/service/vfs/handlers"
 	controller0x290ce7 "github.com/bitwormhole/gie/app/web/controller"
+	vo0xcb0bb3 "github.com/bitwormhole/gie/app/web/vo"
 	ptable0x68126b "github.com/bitwormhole/ptable"
 	cli0xf30272 "github.com/bitwormhole/starter-cli/cli"
 	application0x67f6c5 "github.com/bitwormhole/starter/application"
@@ -172,6 +173,7 @@ type pComDBAServiceProxy struct {
 type pComMockDBAService struct {
 	instance *service0xa10cab.MockDBAService
 	 markup0x23084a.Component `id:"mock-dba-service"`
+	status vo0xcb0bb3.DBA ``
 }
 
 
@@ -268,6 +270,13 @@ type pComRepositoriesController struct {
 	instance *controller0x290ce7.RepositoriesController
 	 markup0x23084a.RestController `class:"rest-controller"`
 	Service service0xa10cab.RepositoryService `inject:"#repository-service"`
+}
+
+
+type pComSecurityGateController struct {
+	instance *controller0x290ce7.SecurityGateController
+	 markup0x23084a.Component `class:"rest-controller"`
+	Bind string `inject:"${server.bind}"`
 }
 
 
