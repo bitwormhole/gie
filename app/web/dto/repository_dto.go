@@ -1,5 +1,11 @@
 package dto
 
+// 表示仓库的状态
+const (
+	RepositoryStatusOnline  = "online"
+	RepositoryStatusOffline = "offline"
+)
+
 type Repository struct {
 	BaseDTO
 

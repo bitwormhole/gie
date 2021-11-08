@@ -54,10 +54,23 @@ func (inst *RepositoryServiceImpl) GetAll() ([]*dto.Repository, error) {
 		if err != nil {
 			return nil, err
 		}
+		inst.checkStatus(o2)
 		dst = append(dst, o2)
 	}
 
 	return dst, nil
+}
+
+func (inst *RepositoryServiceImpl) checkStatus(o *dto.Repository) {
+	path := o.Path
+	node := fs.Default().GetPath(path)
+	if node.IsDir() {
+		o.Status = dto.RepositoryStatusOnline
+	} else if node.IsFile() {
+		o.Status = dto.RepositoryStatusOnline
+	} else {
+		o.Status = dto.RepositoryStatusOffline
+	}
 }
 
 func (inst *RepositoryServiceImpl) GetOne(id string) (*dto.Repository, error) {
