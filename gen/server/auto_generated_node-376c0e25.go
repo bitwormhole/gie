@@ -25,8 +25,9 @@ type pComEnvironmentImpl struct {
 	instance *context0x9ddf49.EnvironmentImpl
 	 markup0x23084a.Component `id:"env" initMethod:"Init"`
 	Context application0x67f6c5.Context `inject:"context"`
-	dbaHomeString string ``
-	dbaHomePath fs0x8698bb.Path ``
+	AppHomeDir string `inject:"${application.home.dir}"`
+	theBitHomeDir fs0x8698bb.Path ``
+	theAppHomeDir fs0x8698bb.Path ``
 }
 
 

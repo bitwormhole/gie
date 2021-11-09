@@ -366,6 +366,7 @@ type comFactory4pComEnvironmentImpl struct {
 
 	
 	mContextSelector config.InjectionSelector
+	mAppHomeDirSelector config.InjectionSelector
 
 }
 
@@ -373,6 +374,7 @@ func (inst * comFactory4pComEnvironmentImpl) init() application.ComponentFactory
 
 	
 	inst.mContextSelector = config.NewInjectionSelector("context",nil)
+	inst.mAppHomeDirSelector = config.NewInjectionSelector("${application.home.dir}",nil)
 
 
 	inst.mPrototype = inst.newObject()
@@ -411,12 +413,18 @@ func (inst * comFactory4pComEnvironmentImpl) Inject(instance application.Compone
 	
 	obj := inst.castObject(instance)
 	obj.Context = inst.getterForFieldContextSelector(context)
+	obj.AppHomeDir = inst.getterForFieldAppHomeDirSelector(context)
 	return context.LastError()
 }
 
 //getterForFieldContextSelector
 func (inst * comFactory4pComEnvironmentImpl) getterForFieldContextSelector (context application.InstanceContext) application.Context {
     return context.Context()
+}
+
+//getterForFieldAppHomeDirSelector
+func (inst * comFactory4pComEnvironmentImpl) getterForFieldAppHomeDirSelector (context application.InstanceContext) string {
+    return inst.mAppHomeDirSelector.GetString(context)
 }
 
 
