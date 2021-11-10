@@ -5,15 +5,15 @@
 package server
 
 import (
-	context0x9ddf49 "github.com/bitwormhole/gie/app/context"
-	dao0x5098d3 "github.com/bitwormhole/gie/app/data/dao"
-	repository0x9fdb90 "github.com/bitwormhole/gie/app/data/repository"
-	store0x5e2bc3 "github.com/bitwormhole/gie/app/data/store"
-	service0xa10cab "github.com/bitwormhole/gie/app/service"
-	commands0x33b0dc "github.com/bitwormhole/gie/app/service/commands"
-	vfs0xa225e7 "github.com/bitwormhole/gie/app/service/vfs"
-	handlers0x6bcb69 "github.com/bitwormhole/gie/app/service/vfs/handlers"
-	controller0x290ce7 "github.com/bitwormhole/gie/app/web/controller"
+	context0xa8bbcb "github.com/bitwormhole/gie/server/context"
+	dao0xadd4a8 "github.com/bitwormhole/gie/server/data/dao"
+	repository0xa05f40 "github.com/bitwormhole/gie/server/data/repository"
+	store0x791fce "github.com/bitwormhole/gie/server/data/store"
+	service0xe6dbe2 "github.com/bitwormhole/gie/server/service"
+	commands0x3b72f4 "github.com/bitwormhole/gie/server/service/commands"
+	vfs0x1fe708 "github.com/bitwormhole/gie/server/service/vfs"
+	handlers0x60c8cf "github.com/bitwormhole/gie/server/service/vfs/handlers"
+	controller0xe6531e "github.com/bitwormhole/gie/server/web/controller"
 	ptable0x68126b "github.com/bitwormhole/ptable"
 	cli0xf30272 "github.com/bitwormhole/starter-cli/cli"
 	application "github.com/bitwormhole/starter/application"
@@ -46,27 +46,27 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 		return err
 	}
 
-	// component: com2-repository0x9fdb90.ExampleImpl
+	// component: com2-repository0xa05f40.ExampleImpl
 	cominfobuilder.Next()
-	cominfobuilder.ID("com2-repository0x9fdb90.ExampleImpl").Class("ptable-repository").Aliases("").Scope("")
+	cominfobuilder.ID("com2-repository0xa05f40.ExampleImpl").Class("ptable-repository").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComExampleImpl{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com3-repository0x9fdb90.PermissionImpl
+	// component: com3-repository0xa05f40.PermissionImpl
 	cominfobuilder.Next()
-	cominfobuilder.ID("com3-repository0x9fdb90.PermissionImpl").Class("ptable-repository").Aliases("").Scope("")
+	cominfobuilder.ID("com3-repository0xa05f40.PermissionImpl").Class("ptable-repository").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComPermissionImpl{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com4-repository0x9fdb90.PlanImpl
+	// component: com4-repository0xa05f40.PlanImpl
 	cominfobuilder.Next()
-	cominfobuilder.ID("com4-repository0x9fdb90.PlanImpl").Class("ptable-repository").Aliases("").Scope("")
+	cominfobuilder.ID("com4-repository0xa05f40.PlanImpl").Class("ptable-repository").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComPlanImpl{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
@@ -82,27 +82,27 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 		return err
 	}
 
-	// component: com6-repository0x9fdb90.RoleImpl
+	// component: com6-repository0xa05f40.RoleImpl
 	cominfobuilder.Next()
-	cominfobuilder.ID("com6-repository0x9fdb90.RoleImpl").Class("ptable-repository").Aliases("").Scope("")
+	cominfobuilder.ID("com6-repository0xa05f40.RoleImpl").Class("ptable-repository").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComRoleImpl{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com7-repository0x9fdb90.TaskImpl
+	// component: com7-repository0xa05f40.TaskImpl
 	cominfobuilder.Next()
-	cominfobuilder.ID("com7-repository0x9fdb90.TaskImpl").Class("ptable-repository").Aliases("").Scope("")
+	cominfobuilder.ID("com7-repository0xa05f40.TaskImpl").Class("ptable-repository").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComTaskImpl{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com8-repository0x9fdb90.UserImpl
+	// component: com8-repository0xa05f40.UserImpl
 	cominfobuilder.Next()
-	cominfobuilder.ID("com8-repository0x9fdb90.UserImpl").Class("ptable-repository").Aliases("").Scope("")
+	cominfobuilder.ID("com8-repository0xa05f40.UserImpl").Class("ptable-repository").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComUserImpl{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
@@ -136,27 +136,27 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 		return err
 	}
 
-	// component: com12-commands0x33b0dc.FindRepo
+	// component: com12-commands0x3b72f4.FindRepo
 	cominfobuilder.Next()
-	cominfobuilder.ID("com12-commands0x33b0dc.FindRepo").Class("cli-handler").Aliases("").Scope("")
+	cominfobuilder.ID("com12-commands0x3b72f4.FindRepo").Class("cli-handler").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComFindRepo{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com13-commands0x33b0dc.Roots
+	// component: com13-commands0x3b72f4.Roots
 	cominfobuilder.Next()
-	cominfobuilder.ID("com13-commands0x33b0dc.Roots").Class("cli-handler").Aliases("").Scope("")
+	cominfobuilder.ID("com13-commands0x3b72f4.Roots").Class("cli-handler").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComRoots{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com14-commands0x33b0dc.Shell
+	// component: com14-commands0x3b72f4.Shell
 	cominfobuilder.Next()
-	cominfobuilder.ID("com14-commands0x33b0dc.Shell").Class("cli-handler").Aliases("").Scope("")
+	cominfobuilder.ID("com14-commands0x3b72f4.Shell").Class("cli-handler").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComShell{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
@@ -235,9 +235,9 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 		return err
 	}
 
-	// component: com23-handlers0x6bcb69.RootHandler
+	// component: com23-handlers0x60c8cf.RootHandler
 	cominfobuilder.Next()
-	cominfobuilder.ID("com23-handlers0x6bcb69.RootHandler").Class("vfs-handler").Aliases("").Scope("")
+	cominfobuilder.ID("com23-handlers0x60c8cf.RootHandler").Class("vfs-handler").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComRootHandler{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
@@ -262,90 +262,90 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 		return err
 	}
 
-	// component: com26-controller0x290ce7.CommandController
+	// component: com26-controller0xe6531e.CommandController
 	cominfobuilder.Next()
-	cominfobuilder.ID("com26-controller0x290ce7.CommandController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.ID("com26-controller0xe6531e.CommandController").Class("rest-controller").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComCommandController{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com27-controller0x290ce7.DBAController
+	// component: com27-controller0xe6531e.DBAController
 	cominfobuilder.Next()
-	cominfobuilder.ID("com27-controller0x290ce7.DBAController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.ID("com27-controller0xe6531e.DBAController").Class("rest-controller").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComDBAController{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com28-controller0x290ce7.HTTPErrorController
+	// component: com28-controller0xe6531e.HTTPErrorController
 	cominfobuilder.Next()
-	cominfobuilder.ID("com28-controller0x290ce7.HTTPErrorController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.ID("com28-controller0xe6531e.HTTPErrorController").Class("rest-controller").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComHTTPErrorController{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com29-controller0x290ce7.ExampleController
+	// component: com29-controller0xe6531e.ExampleController
 	cominfobuilder.Next()
-	cominfobuilder.ID("com29-controller0x290ce7.ExampleController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.ID("com29-controller0xe6531e.ExampleController").Class("rest-controller").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComExampleController{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com30-controller0x290ce7.FileSystemController
+	// component: com30-controller0xe6531e.FileSystemController
 	cominfobuilder.Next()
-	cominfobuilder.ID("com30-controller0x290ce7.FileSystemController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.ID("com30-controller0xe6531e.FileSystemController").Class("rest-controller").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComFileSystemController{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com31-controller0x290ce7.PlansController
+	// component: com31-controller0xe6531e.PlansController
 	cominfobuilder.Next()
-	cominfobuilder.ID("com31-controller0x290ce7.PlansController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.ID("com31-controller0xe6531e.PlansController").Class("rest-controller").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComPlansController{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com32-controller0x290ce7.RepositoriesController
+	// component: com32-controller0xe6531e.RepositoriesController
 	cominfobuilder.Next()
-	cominfobuilder.ID("com32-controller0x290ce7.RepositoriesController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.ID("com32-controller0xe6531e.RepositoriesController").Class("rest-controller").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComRepositoriesController{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com33-controller0x290ce7.SecurityGateController
+	// component: com33-controller0xe6531e.SecurityGateController
 	cominfobuilder.Next()
-	cominfobuilder.ID("com33-controller0x290ce7.SecurityGateController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.ID("com33-controller0xe6531e.SecurityGateController").Class("rest-controller").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComSecurityGateController{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com34-controller0x290ce7.TasksController
+	// component: com34-controller0xe6531e.TasksController
 	cominfobuilder.Next()
-	cominfobuilder.ID("com34-controller0x290ce7.TasksController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.ID("com34-controller0xe6531e.TasksController").Class("rest-controller").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComTasksController{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com35-controller0x290ce7.UsersController
+	// component: com35-controller0xe6531e.UsersController
 	cominfobuilder.Next()
-	cominfobuilder.ID("com35-controller0x290ce7.UsersController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.ID("com35-controller0xe6531e.UsersController").Class("rest-controller").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComUsersController{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
@@ -362,7 +362,7 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 // comFactory4pComEnvironmentImpl : the factory of component: env
 type comFactory4pComEnvironmentImpl struct {
 
-    mPrototype * context0x9ddf49.EnvironmentImpl
+    mPrototype * context0xa8bbcb.EnvironmentImpl
 
 	
 	mContextSelector config.InjectionSelector
@@ -381,12 +381,12 @@ func (inst * comFactory4pComEnvironmentImpl) init() application.ComponentFactory
     return inst
 }
 
-func (inst * comFactory4pComEnvironmentImpl) newObject() * context0x9ddf49.EnvironmentImpl {
-	return & context0x9ddf49.EnvironmentImpl {}
+func (inst * comFactory4pComEnvironmentImpl) newObject() * context0xa8bbcb.EnvironmentImpl {
+	return & context0xa8bbcb.EnvironmentImpl {}
 }
 
-func (inst * comFactory4pComEnvironmentImpl) castObject(instance application.ComponentInstance) * context0x9ddf49.EnvironmentImpl {
-	return instance.Get().(*context0x9ddf49.EnvironmentImpl)
+func (inst * comFactory4pComEnvironmentImpl) castObject(instance application.ComponentInstance) * context0xa8bbcb.EnvironmentImpl {
+	return instance.Get().(*context0xa8bbcb.EnvironmentImpl)
 }
 
 func (inst * comFactory4pComEnvironmentImpl) GetPrototype() lang.Object {
@@ -434,7 +434,7 @@ func (inst * comFactory4pComEnvironmentImpl) getterForFieldAppHomeDirSelector (c
 // comFactory4pComRepositoryDaoImpl : the factory of component: repository-dao
 type comFactory4pComRepositoryDaoImpl struct {
 
-    mPrototype * dao0x5098d3.RepositoryDaoImpl
+    mPrototype * dao0xadd4a8.RepositoryDaoImpl
 
 	
 	mRepo2Selector config.InjectionSelector
@@ -451,12 +451,12 @@ func (inst * comFactory4pComRepositoryDaoImpl) init() application.ComponentFacto
     return inst
 }
 
-func (inst * comFactory4pComRepositoryDaoImpl) newObject() * dao0x5098d3.RepositoryDaoImpl {
-	return & dao0x5098d3.RepositoryDaoImpl {}
+func (inst * comFactory4pComRepositoryDaoImpl) newObject() * dao0xadd4a8.RepositoryDaoImpl {
+	return & dao0xadd4a8.RepositoryDaoImpl {}
 }
 
-func (inst * comFactory4pComRepositoryDaoImpl) castObject(instance application.ComponentInstance) * dao0x5098d3.RepositoryDaoImpl {
-	return instance.Get().(*dao0x5098d3.RepositoryDaoImpl)
+func (inst * comFactory4pComRepositoryDaoImpl) castObject(instance application.ComponentInstance) * dao0xadd4a8.RepositoryDaoImpl {
+	return instance.Get().(*dao0xadd4a8.RepositoryDaoImpl)
 }
 
 func (inst * comFactory4pComRepositoryDaoImpl) GetPrototype() lang.Object {
@@ -487,17 +487,17 @@ func (inst * comFactory4pComRepositoryDaoImpl) Inject(instance application.Compo
 }
 
 //getterForFieldRepo2Selector
-func (inst * comFactory4pComRepositoryDaoImpl) getterForFieldRepo2Selector (context application.InstanceContext) repository0x9fdb90.Repository {
+func (inst * comFactory4pComRepositoryDaoImpl) getterForFieldRepo2Selector (context application.InstanceContext) repository0xa05f40.Repository {
 
 	o1 := inst.mRepo2Selector.GetOne(context)
-	o2, ok := o1.(repository0x9fdb90.Repository)
+	o2, ok := o1.(repository0xa05f40.Repository)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
 		eb.Set("com", "repository-dao")
 		eb.Set("field", "Repo2")
 		eb.Set("type1", "?")
-		eb.Set("type2", "repository0x9fdb90.Repository")
+		eb.Set("type2", "repository0xa05f40.Repository")
 		context.HandleError(eb.Create())
 		return nil
 	}
@@ -508,10 +508,10 @@ func (inst * comFactory4pComRepositoryDaoImpl) getterForFieldRepo2Selector (cont
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComExampleImpl : the factory of component: com2-repository0x9fdb90.ExampleImpl
+// comFactory4pComExampleImpl : the factory of component: com2-repository0xa05f40.ExampleImpl
 type comFactory4pComExampleImpl struct {
 
-    mPrototype * repository0x9fdb90.ExampleImpl
+    mPrototype * repository0xa05f40.ExampleImpl
 
 	
 
@@ -526,12 +526,12 @@ func (inst * comFactory4pComExampleImpl) init() application.ComponentFactory {
     return inst
 }
 
-func (inst * comFactory4pComExampleImpl) newObject() * repository0x9fdb90.ExampleImpl {
-	return & repository0x9fdb90.ExampleImpl {}
+func (inst * comFactory4pComExampleImpl) newObject() * repository0xa05f40.ExampleImpl {
+	return & repository0xa05f40.ExampleImpl {}
 }
 
-func (inst * comFactory4pComExampleImpl) castObject(instance application.ComponentInstance) * repository0x9fdb90.ExampleImpl {
-	return instance.Get().(*repository0x9fdb90.ExampleImpl)
+func (inst * comFactory4pComExampleImpl) castObject(instance application.ComponentInstance) * repository0xa05f40.ExampleImpl {
+	return instance.Get().(*repository0xa05f40.ExampleImpl)
 }
 
 func (inst * comFactory4pComExampleImpl) GetPrototype() lang.Object {
@@ -562,10 +562,10 @@ func (inst * comFactory4pComExampleImpl) Inject(instance application.ComponentIn
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComPermissionImpl : the factory of component: com3-repository0x9fdb90.PermissionImpl
+// comFactory4pComPermissionImpl : the factory of component: com3-repository0xa05f40.PermissionImpl
 type comFactory4pComPermissionImpl struct {
 
-    mPrototype * repository0x9fdb90.PermissionImpl
+    mPrototype * repository0xa05f40.PermissionImpl
 
 	
 
@@ -580,12 +580,12 @@ func (inst * comFactory4pComPermissionImpl) init() application.ComponentFactory 
     return inst
 }
 
-func (inst * comFactory4pComPermissionImpl) newObject() * repository0x9fdb90.PermissionImpl {
-	return & repository0x9fdb90.PermissionImpl {}
+func (inst * comFactory4pComPermissionImpl) newObject() * repository0xa05f40.PermissionImpl {
+	return & repository0xa05f40.PermissionImpl {}
 }
 
-func (inst * comFactory4pComPermissionImpl) castObject(instance application.ComponentInstance) * repository0x9fdb90.PermissionImpl {
-	return instance.Get().(*repository0x9fdb90.PermissionImpl)
+func (inst * comFactory4pComPermissionImpl) castObject(instance application.ComponentInstance) * repository0xa05f40.PermissionImpl {
+	return instance.Get().(*repository0xa05f40.PermissionImpl)
 }
 
 func (inst * comFactory4pComPermissionImpl) GetPrototype() lang.Object {
@@ -616,10 +616,10 @@ func (inst * comFactory4pComPermissionImpl) Inject(instance application.Componen
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComPlanImpl : the factory of component: com4-repository0x9fdb90.PlanImpl
+// comFactory4pComPlanImpl : the factory of component: com4-repository0xa05f40.PlanImpl
 type comFactory4pComPlanImpl struct {
 
-    mPrototype * repository0x9fdb90.PlanImpl
+    mPrototype * repository0xa05f40.PlanImpl
 
 	
 
@@ -634,12 +634,12 @@ func (inst * comFactory4pComPlanImpl) init() application.ComponentFactory {
     return inst
 }
 
-func (inst * comFactory4pComPlanImpl) newObject() * repository0x9fdb90.PlanImpl {
-	return & repository0x9fdb90.PlanImpl {}
+func (inst * comFactory4pComPlanImpl) newObject() * repository0xa05f40.PlanImpl {
+	return & repository0xa05f40.PlanImpl {}
 }
 
-func (inst * comFactory4pComPlanImpl) castObject(instance application.ComponentInstance) * repository0x9fdb90.PlanImpl {
-	return instance.Get().(*repository0x9fdb90.PlanImpl)
+func (inst * comFactory4pComPlanImpl) castObject(instance application.ComponentInstance) * repository0xa05f40.PlanImpl {
+	return instance.Get().(*repository0xa05f40.PlanImpl)
 }
 
 func (inst * comFactory4pComPlanImpl) GetPrototype() lang.Object {
@@ -673,7 +673,7 @@ func (inst * comFactory4pComPlanImpl) Inject(instance application.ComponentInsta
 // comFactory4pComRepositoryImpl : the factory of component: repository-repository
 type comFactory4pComRepositoryImpl struct {
 
-    mPrototype * repository0x9fdb90.RepositoryImpl
+    mPrototype * repository0xa05f40.RepositoryImpl
 
 	
 
@@ -688,12 +688,12 @@ func (inst * comFactory4pComRepositoryImpl) init() application.ComponentFactory 
     return inst
 }
 
-func (inst * comFactory4pComRepositoryImpl) newObject() * repository0x9fdb90.RepositoryImpl {
-	return & repository0x9fdb90.RepositoryImpl {}
+func (inst * comFactory4pComRepositoryImpl) newObject() * repository0xa05f40.RepositoryImpl {
+	return & repository0xa05f40.RepositoryImpl {}
 }
 
-func (inst * comFactory4pComRepositoryImpl) castObject(instance application.ComponentInstance) * repository0x9fdb90.RepositoryImpl {
-	return instance.Get().(*repository0x9fdb90.RepositoryImpl)
+func (inst * comFactory4pComRepositoryImpl) castObject(instance application.ComponentInstance) * repository0xa05f40.RepositoryImpl {
+	return instance.Get().(*repository0xa05f40.RepositoryImpl)
 }
 
 func (inst * comFactory4pComRepositoryImpl) GetPrototype() lang.Object {
@@ -724,10 +724,10 @@ func (inst * comFactory4pComRepositoryImpl) Inject(instance application.Componen
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComRoleImpl : the factory of component: com6-repository0x9fdb90.RoleImpl
+// comFactory4pComRoleImpl : the factory of component: com6-repository0xa05f40.RoleImpl
 type comFactory4pComRoleImpl struct {
 
-    mPrototype * repository0x9fdb90.RoleImpl
+    mPrototype * repository0xa05f40.RoleImpl
 
 	
 
@@ -742,12 +742,12 @@ func (inst * comFactory4pComRoleImpl) init() application.ComponentFactory {
     return inst
 }
 
-func (inst * comFactory4pComRoleImpl) newObject() * repository0x9fdb90.RoleImpl {
-	return & repository0x9fdb90.RoleImpl {}
+func (inst * comFactory4pComRoleImpl) newObject() * repository0xa05f40.RoleImpl {
+	return & repository0xa05f40.RoleImpl {}
 }
 
-func (inst * comFactory4pComRoleImpl) castObject(instance application.ComponentInstance) * repository0x9fdb90.RoleImpl {
-	return instance.Get().(*repository0x9fdb90.RoleImpl)
+func (inst * comFactory4pComRoleImpl) castObject(instance application.ComponentInstance) * repository0xa05f40.RoleImpl {
+	return instance.Get().(*repository0xa05f40.RoleImpl)
 }
 
 func (inst * comFactory4pComRoleImpl) GetPrototype() lang.Object {
@@ -778,10 +778,10 @@ func (inst * comFactory4pComRoleImpl) Inject(instance application.ComponentInsta
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComTaskImpl : the factory of component: com7-repository0x9fdb90.TaskImpl
+// comFactory4pComTaskImpl : the factory of component: com7-repository0xa05f40.TaskImpl
 type comFactory4pComTaskImpl struct {
 
-    mPrototype * repository0x9fdb90.TaskImpl
+    mPrototype * repository0xa05f40.TaskImpl
 
 	
 
@@ -796,12 +796,12 @@ func (inst * comFactory4pComTaskImpl) init() application.ComponentFactory {
     return inst
 }
 
-func (inst * comFactory4pComTaskImpl) newObject() * repository0x9fdb90.TaskImpl {
-	return & repository0x9fdb90.TaskImpl {}
+func (inst * comFactory4pComTaskImpl) newObject() * repository0xa05f40.TaskImpl {
+	return & repository0xa05f40.TaskImpl {}
 }
 
-func (inst * comFactory4pComTaskImpl) castObject(instance application.ComponentInstance) * repository0x9fdb90.TaskImpl {
-	return instance.Get().(*repository0x9fdb90.TaskImpl)
+func (inst * comFactory4pComTaskImpl) castObject(instance application.ComponentInstance) * repository0xa05f40.TaskImpl {
+	return instance.Get().(*repository0xa05f40.TaskImpl)
 }
 
 func (inst * comFactory4pComTaskImpl) GetPrototype() lang.Object {
@@ -832,10 +832,10 @@ func (inst * comFactory4pComTaskImpl) Inject(instance application.ComponentInsta
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComUserImpl : the factory of component: com8-repository0x9fdb90.UserImpl
+// comFactory4pComUserImpl : the factory of component: com8-repository0xa05f40.UserImpl
 type comFactory4pComUserImpl struct {
 
-    mPrototype * repository0x9fdb90.UserImpl
+    mPrototype * repository0xa05f40.UserImpl
 
 	
 
@@ -850,12 +850,12 @@ func (inst * comFactory4pComUserImpl) init() application.ComponentFactory {
     return inst
 }
 
-func (inst * comFactory4pComUserImpl) newObject() * repository0x9fdb90.UserImpl {
-	return & repository0x9fdb90.UserImpl {}
+func (inst * comFactory4pComUserImpl) newObject() * repository0xa05f40.UserImpl {
+	return & repository0xa05f40.UserImpl {}
 }
 
-func (inst * comFactory4pComUserImpl) castObject(instance application.ComponentInstance) * repository0x9fdb90.UserImpl {
-	return instance.Get().(*repository0x9fdb90.UserImpl)
+func (inst * comFactory4pComUserImpl) castObject(instance application.ComponentInstance) * repository0xa05f40.UserImpl {
+	return instance.Get().(*repository0xa05f40.UserImpl)
 }
 
 func (inst * comFactory4pComUserImpl) GetPrototype() lang.Object {
@@ -889,7 +889,7 @@ func (inst * comFactory4pComUserImpl) Inject(instance application.ComponentInsta
 // comFactory4pComDataSource : the factory of component: ptable-data-source
 type comFactory4pComDataSource struct {
 
-    mPrototype * store0x5e2bc3.DataSource
+    mPrototype * store0x791fce.DataSource
 
 	
 	mEnvSelector config.InjectionSelector
@@ -908,12 +908,12 @@ func (inst * comFactory4pComDataSource) init() application.ComponentFactory {
     return inst
 }
 
-func (inst * comFactory4pComDataSource) newObject() * store0x5e2bc3.DataSource {
-	return & store0x5e2bc3.DataSource {}
+func (inst * comFactory4pComDataSource) newObject() * store0x791fce.DataSource {
+	return & store0x791fce.DataSource {}
 }
 
-func (inst * comFactory4pComDataSource) castObject(instance application.ComponentInstance) * store0x5e2bc3.DataSource {
-	return instance.Get().(*store0x5e2bc3.DataSource)
+func (inst * comFactory4pComDataSource) castObject(instance application.ComponentInstance) * store0x791fce.DataSource {
+	return instance.Get().(*store0x791fce.DataSource)
 }
 
 func (inst * comFactory4pComDataSource) GetPrototype() lang.Object {
@@ -945,17 +945,17 @@ func (inst * comFactory4pComDataSource) Inject(instance application.ComponentIns
 }
 
 //getterForFieldEnvSelector
-func (inst * comFactory4pComDataSource) getterForFieldEnvSelector (context application.InstanceContext) context0x9ddf49.Environment {
+func (inst * comFactory4pComDataSource) getterForFieldEnvSelector (context application.InstanceContext) context0xa8bbcb.Environment {
 
 	o1 := inst.mEnvSelector.GetOne(context)
-	o2, ok := o1.(context0x9ddf49.Environment)
+	o2, ok := o1.(context0xa8bbcb.Environment)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
 		eb.Set("com", "ptable-data-source")
 		eb.Set("field", "Env")
 		eb.Set("type1", "?")
-		eb.Set("type2", "context0x9ddf49.Environment")
+		eb.Set("type2", "context0xa8bbcb.Environment")
 		context.HandleError(eb.Create())
 		return nil
 	}
@@ -982,7 +982,7 @@ func (inst * comFactory4pComDataSource) getterForFieldReposSelector (context app
 // comFactory4pComAgentLinkServiceImpl : the factory of component: agent-link-service
 type comFactory4pComAgentLinkServiceImpl struct {
 
-    mPrototype * service0xa10cab.AgentLinkServiceImpl
+    mPrototype * service0xe6dbe2.AgentLinkServiceImpl
 
 	
 	mAgentPortMinSelector config.InjectionSelector
@@ -1001,12 +1001,12 @@ func (inst * comFactory4pComAgentLinkServiceImpl) init() application.ComponentFa
     return inst
 }
 
-func (inst * comFactory4pComAgentLinkServiceImpl) newObject() * service0xa10cab.AgentLinkServiceImpl {
-	return & service0xa10cab.AgentLinkServiceImpl {}
+func (inst * comFactory4pComAgentLinkServiceImpl) newObject() * service0xe6dbe2.AgentLinkServiceImpl {
+	return & service0xe6dbe2.AgentLinkServiceImpl {}
 }
 
-func (inst * comFactory4pComAgentLinkServiceImpl) castObject(instance application.ComponentInstance) * service0xa10cab.AgentLinkServiceImpl {
-	return instance.Get().(*service0xa10cab.AgentLinkServiceImpl)
+func (inst * comFactory4pComAgentLinkServiceImpl) castObject(instance application.ComponentInstance) * service0xe6dbe2.AgentLinkServiceImpl {
+	return instance.Get().(*service0xe6dbe2.AgentLinkServiceImpl)
 }
 
 func (inst * comFactory4pComAgentLinkServiceImpl) GetPrototype() lang.Object {
@@ -1054,7 +1054,7 @@ func (inst * comFactory4pComAgentLinkServiceImpl) getterForFieldAgentPortMaxSele
 // comFactory4pComApplicationUpdateServiceImpl : the factory of component: application-update-service
 type comFactory4pComApplicationUpdateServiceImpl struct {
 
-    mPrototype * service0xa10cab.ApplicationUpdateServiceImpl
+    mPrototype * service0xe6dbe2.ApplicationUpdateServiceImpl
 
 	
 	mEnvSelector config.InjectionSelector
@@ -1071,12 +1071,12 @@ func (inst * comFactory4pComApplicationUpdateServiceImpl) init() application.Com
     return inst
 }
 
-func (inst * comFactory4pComApplicationUpdateServiceImpl) newObject() * service0xa10cab.ApplicationUpdateServiceImpl {
-	return & service0xa10cab.ApplicationUpdateServiceImpl {}
+func (inst * comFactory4pComApplicationUpdateServiceImpl) newObject() * service0xe6dbe2.ApplicationUpdateServiceImpl {
+	return & service0xe6dbe2.ApplicationUpdateServiceImpl {}
 }
 
-func (inst * comFactory4pComApplicationUpdateServiceImpl) castObject(instance application.ComponentInstance) * service0xa10cab.ApplicationUpdateServiceImpl {
-	return instance.Get().(*service0xa10cab.ApplicationUpdateServiceImpl)
+func (inst * comFactory4pComApplicationUpdateServiceImpl) castObject(instance application.ComponentInstance) * service0xe6dbe2.ApplicationUpdateServiceImpl {
+	return instance.Get().(*service0xe6dbe2.ApplicationUpdateServiceImpl)
 }
 
 func (inst * comFactory4pComApplicationUpdateServiceImpl) GetPrototype() lang.Object {
@@ -1107,17 +1107,17 @@ func (inst * comFactory4pComApplicationUpdateServiceImpl) Inject(instance applic
 }
 
 //getterForFieldEnvSelector
-func (inst * comFactory4pComApplicationUpdateServiceImpl) getterForFieldEnvSelector (context application.InstanceContext) context0x9ddf49.Environment {
+func (inst * comFactory4pComApplicationUpdateServiceImpl) getterForFieldEnvSelector (context application.InstanceContext) context0xa8bbcb.Environment {
 
 	o1 := inst.mEnvSelector.GetOne(context)
-	o2, ok := o1.(context0x9ddf49.Environment)
+	o2, ok := o1.(context0xa8bbcb.Environment)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
 		eb.Set("com", "application-update-service")
 		eb.Set("field", "Env")
 		eb.Set("type1", "?")
-		eb.Set("type2", "context0x9ddf49.Environment")
+		eb.Set("type2", "context0xa8bbcb.Environment")
 		context.HandleError(eb.Create())
 		return nil
 	}
@@ -1128,10 +1128,10 @@ func (inst * comFactory4pComApplicationUpdateServiceImpl) getterForFieldEnvSelec
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComFindRepo : the factory of component: com12-commands0x33b0dc.FindRepo
+// comFactory4pComFindRepo : the factory of component: com12-commands0x3b72f4.FindRepo
 type comFactory4pComFindRepo struct {
 
-    mPrototype * commands0x33b0dc.FindRepo
+    mPrototype * commands0x3b72f4.FindRepo
 
 	
 
@@ -1146,12 +1146,12 @@ func (inst * comFactory4pComFindRepo) init() application.ComponentFactory {
     return inst
 }
 
-func (inst * comFactory4pComFindRepo) newObject() * commands0x33b0dc.FindRepo {
-	return & commands0x33b0dc.FindRepo {}
+func (inst * comFactory4pComFindRepo) newObject() * commands0x3b72f4.FindRepo {
+	return & commands0x3b72f4.FindRepo {}
 }
 
-func (inst * comFactory4pComFindRepo) castObject(instance application.ComponentInstance) * commands0x33b0dc.FindRepo {
-	return instance.Get().(*commands0x33b0dc.FindRepo)
+func (inst * comFactory4pComFindRepo) castObject(instance application.ComponentInstance) * commands0x3b72f4.FindRepo {
+	return instance.Get().(*commands0x3b72f4.FindRepo)
 }
 
 func (inst * comFactory4pComFindRepo) GetPrototype() lang.Object {
@@ -1182,10 +1182,10 @@ func (inst * comFactory4pComFindRepo) Inject(instance application.ComponentInsta
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComRoots : the factory of component: com13-commands0x33b0dc.Roots
+// comFactory4pComRoots : the factory of component: com13-commands0x3b72f4.Roots
 type comFactory4pComRoots struct {
 
-    mPrototype * commands0x33b0dc.Roots
+    mPrototype * commands0x3b72f4.Roots
 
 	
 
@@ -1200,12 +1200,12 @@ func (inst * comFactory4pComRoots) init() application.ComponentFactory {
     return inst
 }
 
-func (inst * comFactory4pComRoots) newObject() * commands0x33b0dc.Roots {
-	return & commands0x33b0dc.Roots {}
+func (inst * comFactory4pComRoots) newObject() * commands0x3b72f4.Roots {
+	return & commands0x3b72f4.Roots {}
 }
 
-func (inst * comFactory4pComRoots) castObject(instance application.ComponentInstance) * commands0x33b0dc.Roots {
-	return instance.Get().(*commands0x33b0dc.Roots)
+func (inst * comFactory4pComRoots) castObject(instance application.ComponentInstance) * commands0x3b72f4.Roots {
+	return instance.Get().(*commands0x3b72f4.Roots)
 }
 
 func (inst * comFactory4pComRoots) GetPrototype() lang.Object {
@@ -1236,10 +1236,10 @@ func (inst * comFactory4pComRoots) Inject(instance application.ComponentInstance
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComShell : the factory of component: com14-commands0x33b0dc.Shell
+// comFactory4pComShell : the factory of component: com14-commands0x3b72f4.Shell
 type comFactory4pComShell struct {
 
-    mPrototype * commands0x33b0dc.Shell
+    mPrototype * commands0x3b72f4.Shell
 
 	
 
@@ -1254,12 +1254,12 @@ func (inst * comFactory4pComShell) init() application.ComponentFactory {
     return inst
 }
 
-func (inst * comFactory4pComShell) newObject() * commands0x33b0dc.Shell {
-	return & commands0x33b0dc.Shell {}
+func (inst * comFactory4pComShell) newObject() * commands0x3b72f4.Shell {
+	return & commands0x3b72f4.Shell {}
 }
 
-func (inst * comFactory4pComShell) castObject(instance application.ComponentInstance) * commands0x33b0dc.Shell {
-	return instance.Get().(*commands0x33b0dc.Shell)
+func (inst * comFactory4pComShell) castObject(instance application.ComponentInstance) * commands0x3b72f4.Shell {
+	return instance.Get().(*commands0x3b72f4.Shell)
 }
 
 func (inst * comFactory4pComShell) GetPrototype() lang.Object {
@@ -1293,7 +1293,7 @@ func (inst * comFactory4pComShell) Inject(instance application.ComponentInstance
 // comFactory4pComCommandServiceImpl : the factory of component: command-service
 type comFactory4pComCommandServiceImpl struct {
 
-    mPrototype * service0xa10cab.CommandServiceImpl
+    mPrototype * service0xe6dbe2.CommandServiceImpl
 
 	
 	mClientFactorySelector config.InjectionSelector
@@ -1314,12 +1314,12 @@ func (inst * comFactory4pComCommandServiceImpl) init() application.ComponentFact
     return inst
 }
 
-func (inst * comFactory4pComCommandServiceImpl) newObject() * service0xa10cab.CommandServiceImpl {
-	return & service0xa10cab.CommandServiceImpl {}
+func (inst * comFactory4pComCommandServiceImpl) newObject() * service0xe6dbe2.CommandServiceImpl {
+	return & service0xe6dbe2.CommandServiceImpl {}
 }
 
-func (inst * comFactory4pComCommandServiceImpl) castObject(instance application.ComponentInstance) * service0xa10cab.CommandServiceImpl {
-	return instance.Get().(*service0xa10cab.CommandServiceImpl)
+func (inst * comFactory4pComCommandServiceImpl) castObject(instance application.ComponentInstance) * service0xe6dbe2.CommandServiceImpl {
+	return instance.Get().(*service0xe6dbe2.CommandServiceImpl)
 }
 
 func (inst * comFactory4pComCommandServiceImpl) GetPrototype() lang.Object {
@@ -1370,17 +1370,17 @@ func (inst * comFactory4pComCommandServiceImpl) getterForFieldClientFactorySelec
 }
 
 //getterForFieldVFSSelector
-func (inst * comFactory4pComCommandServiceImpl) getterForFieldVFSSelector (context application.InstanceContext) service0xa10cab.VFSService {
+func (inst * comFactory4pComCommandServiceImpl) getterForFieldVFSSelector (context application.InstanceContext) service0xe6dbe2.VFSService {
 
 	o1 := inst.mVFSSelector.GetOne(context)
-	o2, ok := o1.(service0xa10cab.VFSService)
+	o2, ok := o1.(service0xe6dbe2.VFSService)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
 		eb.Set("com", "command-service")
 		eb.Set("field", "VFS")
 		eb.Set("type1", "?")
-		eb.Set("type2", "service0xa10cab.VFSService")
+		eb.Set("type2", "service0xe6dbe2.VFSService")
 		context.HandleError(eb.Create())
 		return nil
 	}
@@ -1388,17 +1388,17 @@ func (inst * comFactory4pComCommandServiceImpl) getterForFieldVFSSelector (conte
 }
 
 //getterForFieldTasksSelector
-func (inst * comFactory4pComCommandServiceImpl) getterForFieldTasksSelector (context application.InstanceContext) service0xa10cab.TaskService {
+func (inst * comFactory4pComCommandServiceImpl) getterForFieldTasksSelector (context application.InstanceContext) service0xe6dbe2.TaskService {
 
 	o1 := inst.mTasksSelector.GetOne(context)
-	o2, ok := o1.(service0xa10cab.TaskService)
+	o2, ok := o1.(service0xe6dbe2.TaskService)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
 		eb.Set("com", "command-service")
 		eb.Set("field", "Tasks")
 		eb.Set("type1", "?")
-		eb.Set("type2", "service0xa10cab.TaskService")
+		eb.Set("type2", "service0xe6dbe2.TaskService")
 		context.HandleError(eb.Create())
 		return nil
 	}
@@ -1412,7 +1412,7 @@ func (inst * comFactory4pComCommandServiceImpl) getterForFieldTasksSelector (con
 // comFactory4pComContentTypeServiceImpl : the factory of component: content-type-service
 type comFactory4pComContentTypeServiceImpl struct {
 
-    mPrototype * service0xa10cab.ContentTypeServiceImpl
+    mPrototype * service0xe6dbe2.ContentTypeServiceImpl
 
 	
 	mContextSelector config.InjectionSelector
@@ -1429,12 +1429,12 @@ func (inst * comFactory4pComContentTypeServiceImpl) init() application.Component
     return inst
 }
 
-func (inst * comFactory4pComContentTypeServiceImpl) newObject() * service0xa10cab.ContentTypeServiceImpl {
-	return & service0xa10cab.ContentTypeServiceImpl {}
+func (inst * comFactory4pComContentTypeServiceImpl) newObject() * service0xe6dbe2.ContentTypeServiceImpl {
+	return & service0xe6dbe2.ContentTypeServiceImpl {}
 }
 
-func (inst * comFactory4pComContentTypeServiceImpl) castObject(instance application.ComponentInstance) * service0xa10cab.ContentTypeServiceImpl {
-	return instance.Get().(*service0xa10cab.ContentTypeServiceImpl)
+func (inst * comFactory4pComContentTypeServiceImpl) castObject(instance application.ComponentInstance) * service0xe6dbe2.ContentTypeServiceImpl {
+	return instance.Get().(*service0xe6dbe2.ContentTypeServiceImpl)
 }
 
 func (inst * comFactory4pComContentTypeServiceImpl) GetPrototype() lang.Object {
@@ -1476,7 +1476,7 @@ func (inst * comFactory4pComContentTypeServiceImpl) getterForFieldContextSelecto
 // comFactory4pComDBAServiceProxy : the factory of component: dba-service
 type comFactory4pComDBAServiceProxy struct {
 
-    mPrototype * service0xa10cab.DBAServiceProxy
+    mPrototype * service0xe6dbe2.DBAServiceProxy
 
 	
 	mContextSelector config.InjectionSelector
@@ -1495,12 +1495,12 @@ func (inst * comFactory4pComDBAServiceProxy) init() application.ComponentFactory
     return inst
 }
 
-func (inst * comFactory4pComDBAServiceProxy) newObject() * service0xa10cab.DBAServiceProxy {
-	return & service0xa10cab.DBAServiceProxy {}
+func (inst * comFactory4pComDBAServiceProxy) newObject() * service0xe6dbe2.DBAServiceProxy {
+	return & service0xe6dbe2.DBAServiceProxy {}
 }
 
-func (inst * comFactory4pComDBAServiceProxy) castObject(instance application.ComponentInstance) * service0xa10cab.DBAServiceProxy {
-	return instance.Get().(*service0xa10cab.DBAServiceProxy)
+func (inst * comFactory4pComDBAServiceProxy) castObject(instance application.ComponentInstance) * service0xe6dbe2.DBAServiceProxy {
+	return instance.Get().(*service0xe6dbe2.DBAServiceProxy)
 }
 
 func (inst * comFactory4pComDBAServiceProxy) GetPrototype() lang.Object {
@@ -1548,7 +1548,7 @@ func (inst * comFactory4pComDBAServiceProxy) getterForFieldSelectorSelector (con
 // comFactory4pComMockDBAService : the factory of component: mock-dba-service
 type comFactory4pComMockDBAService struct {
 
-    mPrototype * service0xa10cab.MockDBAService
+    mPrototype * service0xe6dbe2.MockDBAService
 
 	
 
@@ -1563,12 +1563,12 @@ func (inst * comFactory4pComMockDBAService) init() application.ComponentFactory 
     return inst
 }
 
-func (inst * comFactory4pComMockDBAService) newObject() * service0xa10cab.MockDBAService {
-	return & service0xa10cab.MockDBAService {}
+func (inst * comFactory4pComMockDBAService) newObject() * service0xe6dbe2.MockDBAService {
+	return & service0xe6dbe2.MockDBAService {}
 }
 
-func (inst * comFactory4pComMockDBAService) castObject(instance application.ComponentInstance) * service0xa10cab.MockDBAService {
-	return instance.Get().(*service0xa10cab.MockDBAService)
+func (inst * comFactory4pComMockDBAService) castObject(instance application.ComponentInstance) * service0xe6dbe2.MockDBAService {
+	return instance.Get().(*service0xe6dbe2.MockDBAService)
 }
 
 func (inst * comFactory4pComMockDBAService) GetPrototype() lang.Object {
@@ -1602,7 +1602,7 @@ func (inst * comFactory4pComMockDBAService) Inject(instance application.Componen
 // comFactory4pComFileSystemServiceImpl : the factory of component: filesystem-service
 type comFactory4pComFileSystemServiceImpl struct {
 
-    mPrototype * service0xa10cab.FileSystemServiceImpl
+    mPrototype * service0xe6dbe2.FileSystemServiceImpl
 
 	
 	mVFSSelector config.InjectionSelector
@@ -1621,12 +1621,12 @@ func (inst * comFactory4pComFileSystemServiceImpl) init() application.ComponentF
     return inst
 }
 
-func (inst * comFactory4pComFileSystemServiceImpl) newObject() * service0xa10cab.FileSystemServiceImpl {
-	return & service0xa10cab.FileSystemServiceImpl {}
+func (inst * comFactory4pComFileSystemServiceImpl) newObject() * service0xe6dbe2.FileSystemServiceImpl {
+	return & service0xe6dbe2.FileSystemServiceImpl {}
 }
 
-func (inst * comFactory4pComFileSystemServiceImpl) castObject(instance application.ComponentInstance) * service0xa10cab.FileSystemServiceImpl {
-	return instance.Get().(*service0xa10cab.FileSystemServiceImpl)
+func (inst * comFactory4pComFileSystemServiceImpl) castObject(instance application.ComponentInstance) * service0xe6dbe2.FileSystemServiceImpl {
+	return instance.Get().(*service0xe6dbe2.FileSystemServiceImpl)
 }
 
 func (inst * comFactory4pComFileSystemServiceImpl) GetPrototype() lang.Object {
@@ -1658,17 +1658,17 @@ func (inst * comFactory4pComFileSystemServiceImpl) Inject(instance application.C
 }
 
 //getterForFieldVFSSelector
-func (inst * comFactory4pComFileSystemServiceImpl) getterForFieldVFSSelector (context application.InstanceContext) service0xa10cab.VFSService {
+func (inst * comFactory4pComFileSystemServiceImpl) getterForFieldVFSSelector (context application.InstanceContext) service0xe6dbe2.VFSService {
 
 	o1 := inst.mVFSSelector.GetOne(context)
-	o2, ok := o1.(service0xa10cab.VFSService)
+	o2, ok := o1.(service0xe6dbe2.VFSService)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
 		eb.Set("com", "filesystem-service")
 		eb.Set("field", "VFS")
 		eb.Set("type1", "?")
-		eb.Set("type2", "service0xa10cab.VFSService")
+		eb.Set("type2", "service0xe6dbe2.VFSService")
 		context.HandleError(eb.Create())
 		return nil
 	}
@@ -1676,17 +1676,17 @@ func (inst * comFactory4pComFileSystemServiceImpl) getterForFieldVFSSelector (co
 }
 
 //getterForFieldTypesSelector
-func (inst * comFactory4pComFileSystemServiceImpl) getterForFieldTypesSelector (context application.InstanceContext) service0xa10cab.ContentTypeService {
+func (inst * comFactory4pComFileSystemServiceImpl) getterForFieldTypesSelector (context application.InstanceContext) service0xe6dbe2.ContentTypeService {
 
 	o1 := inst.mTypesSelector.GetOne(context)
-	o2, ok := o1.(service0xa10cab.ContentTypeService)
+	o2, ok := o1.(service0xe6dbe2.ContentTypeService)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
 		eb.Set("com", "filesystem-service")
 		eb.Set("field", "Types")
 		eb.Set("type1", "?")
-		eb.Set("type2", "service0xa10cab.ContentTypeService")
+		eb.Set("type2", "service0xe6dbe2.ContentTypeService")
 		context.HandleError(eb.Create())
 		return nil
 	}
@@ -1700,7 +1700,7 @@ func (inst * comFactory4pComFileSystemServiceImpl) getterForFieldTypesSelector (
 // comFactory4pComGuiService : the factory of component: gui-service
 type comFactory4pComGuiService struct {
 
-    mPrototype * service0xa10cab.GuiService
+    mPrototype * service0xe6dbe2.GuiService
 
 	
 	mClientFactorySelector config.InjectionSelector
@@ -1719,12 +1719,12 @@ func (inst * comFactory4pComGuiService) init() application.ComponentFactory {
     return inst
 }
 
-func (inst * comFactory4pComGuiService) newObject() * service0xa10cab.GuiService {
-	return & service0xa10cab.GuiService {}
+func (inst * comFactory4pComGuiService) newObject() * service0xe6dbe2.GuiService {
+	return & service0xe6dbe2.GuiService {}
 }
 
-func (inst * comFactory4pComGuiService) castObject(instance application.ComponentInstance) * service0xa10cab.GuiService {
-	return instance.Get().(*service0xa10cab.GuiService)
+func (inst * comFactory4pComGuiService) castObject(instance application.ComponentInstance) * service0xe6dbe2.GuiService {
+	return instance.Get().(*service0xe6dbe2.GuiService)
 }
 
 func (inst * comFactory4pComGuiService) GetPrototype() lang.Object {
@@ -1785,7 +1785,7 @@ func (inst * comFactory4pComGuiService) getterForFieldPortSelector (context appl
 // comFactory4pComRepositoryServiceImpl : the factory of component: repository-service
 type comFactory4pComRepositoryServiceImpl struct {
 
-    mPrototype * service0xa10cab.RepositoryServiceImpl
+    mPrototype * service0xe6dbe2.RepositoryServiceImpl
 
 	
 	mDaoSelector config.InjectionSelector
@@ -1802,12 +1802,12 @@ func (inst * comFactory4pComRepositoryServiceImpl) init() application.ComponentF
     return inst
 }
 
-func (inst * comFactory4pComRepositoryServiceImpl) newObject() * service0xa10cab.RepositoryServiceImpl {
-	return & service0xa10cab.RepositoryServiceImpl {}
+func (inst * comFactory4pComRepositoryServiceImpl) newObject() * service0xe6dbe2.RepositoryServiceImpl {
+	return & service0xe6dbe2.RepositoryServiceImpl {}
 }
 
-func (inst * comFactory4pComRepositoryServiceImpl) castObject(instance application.ComponentInstance) * service0xa10cab.RepositoryServiceImpl {
-	return instance.Get().(*service0xa10cab.RepositoryServiceImpl)
+func (inst * comFactory4pComRepositoryServiceImpl) castObject(instance application.ComponentInstance) * service0xe6dbe2.RepositoryServiceImpl {
+	return instance.Get().(*service0xe6dbe2.RepositoryServiceImpl)
 }
 
 func (inst * comFactory4pComRepositoryServiceImpl) GetPrototype() lang.Object {
@@ -1838,17 +1838,17 @@ func (inst * comFactory4pComRepositoryServiceImpl) Inject(instance application.C
 }
 
 //getterForFieldDaoSelector
-func (inst * comFactory4pComRepositoryServiceImpl) getterForFieldDaoSelector (context application.InstanceContext) dao0x5098d3.RepositoryDAO {
+func (inst * comFactory4pComRepositoryServiceImpl) getterForFieldDaoSelector (context application.InstanceContext) dao0xadd4a8.RepositoryDAO {
 
 	o1 := inst.mDaoSelector.GetOne(context)
-	o2, ok := o1.(dao0x5098d3.RepositoryDAO)
+	o2, ok := o1.(dao0xadd4a8.RepositoryDAO)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
 		eb.Set("com", "repository-service")
 		eb.Set("field", "Dao")
 		eb.Set("type1", "?")
-		eb.Set("type2", "dao0x5098d3.RepositoryDAO")
+		eb.Set("type2", "dao0xadd4a8.RepositoryDAO")
 		context.HandleError(eb.Create())
 		return nil
 	}
@@ -1862,7 +1862,7 @@ func (inst * comFactory4pComRepositoryServiceImpl) getterForFieldDaoSelector (co
 // comFactory4pComTaskServiceImpl : the factory of component: task-service
 type comFactory4pComTaskServiceImpl struct {
 
-    mPrototype * service0xa10cab.TaskServiceImpl
+    mPrototype * service0xe6dbe2.TaskServiceImpl
 
 	
 
@@ -1877,12 +1877,12 @@ func (inst * comFactory4pComTaskServiceImpl) init() application.ComponentFactory
     return inst
 }
 
-func (inst * comFactory4pComTaskServiceImpl) newObject() * service0xa10cab.TaskServiceImpl {
-	return & service0xa10cab.TaskServiceImpl {}
+func (inst * comFactory4pComTaskServiceImpl) newObject() * service0xe6dbe2.TaskServiceImpl {
+	return & service0xe6dbe2.TaskServiceImpl {}
 }
 
-func (inst * comFactory4pComTaskServiceImpl) castObject(instance application.ComponentInstance) * service0xa10cab.TaskServiceImpl {
-	return instance.Get().(*service0xa10cab.TaskServiceImpl)
+func (inst * comFactory4pComTaskServiceImpl) castObject(instance application.ComponentInstance) * service0xe6dbe2.TaskServiceImpl {
+	return instance.Get().(*service0xe6dbe2.TaskServiceImpl)
 }
 
 func (inst * comFactory4pComTaskServiceImpl) GetPrototype() lang.Object {
@@ -1913,10 +1913,10 @@ func (inst * comFactory4pComTaskServiceImpl) Inject(instance application.Compone
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComRootHandler : the factory of component: com23-handlers0x6bcb69.RootHandler
+// comFactory4pComRootHandler : the factory of component: com23-handlers0x60c8cf.RootHandler
 type comFactory4pComRootHandler struct {
 
-    mPrototype * handlers0x6bcb69.RootHandler
+    mPrototype * handlers0x60c8cf.RootHandler
 
 	
 
@@ -1931,12 +1931,12 @@ func (inst * comFactory4pComRootHandler) init() application.ComponentFactory {
     return inst
 }
 
-func (inst * comFactory4pComRootHandler) newObject() * handlers0x6bcb69.RootHandler {
-	return & handlers0x6bcb69.RootHandler {}
+func (inst * comFactory4pComRootHandler) newObject() * handlers0x60c8cf.RootHandler {
+	return & handlers0x60c8cf.RootHandler {}
 }
 
-func (inst * comFactory4pComRootHandler) castObject(instance application.ComponentInstance) * handlers0x6bcb69.RootHandler {
-	return instance.Get().(*handlers0x6bcb69.RootHandler)
+func (inst * comFactory4pComRootHandler) castObject(instance application.ComponentInstance) * handlers0x60c8cf.RootHandler {
+	return instance.Get().(*handlers0x60c8cf.RootHandler)
 }
 
 func (inst * comFactory4pComRootHandler) GetPrototype() lang.Object {
@@ -1970,7 +1970,7 @@ func (inst * comFactory4pComRootHandler) Inject(instance application.ComponentIn
 // comFactory4pComContextImpl : the factory of component: vfs-context
 type comFactory4pComContextImpl struct {
 
-    mPrototype * vfs0xa225e7.ContextImpl
+    mPrototype * vfs0x1fe708.ContextImpl
 
 	
 
@@ -1985,12 +1985,12 @@ func (inst * comFactory4pComContextImpl) init() application.ComponentFactory {
     return inst
 }
 
-func (inst * comFactory4pComContextImpl) newObject() * vfs0xa225e7.ContextImpl {
-	return & vfs0xa225e7.ContextImpl {}
+func (inst * comFactory4pComContextImpl) newObject() * vfs0x1fe708.ContextImpl {
+	return & vfs0x1fe708.ContextImpl {}
 }
 
-func (inst * comFactory4pComContextImpl) castObject(instance application.ComponentInstance) * vfs0xa225e7.ContextImpl {
-	return instance.Get().(*vfs0xa225e7.ContextImpl)
+func (inst * comFactory4pComContextImpl) castObject(instance application.ComponentInstance) * vfs0x1fe708.ContextImpl {
+	return instance.Get().(*vfs0x1fe708.ContextImpl)
 }
 
 func (inst * comFactory4pComContextImpl) GetPrototype() lang.Object {
@@ -2024,7 +2024,7 @@ func (inst * comFactory4pComContextImpl) Inject(instance application.ComponentIn
 // comFactory4pComVFSServiceImpl : the factory of component: vfs-service
 type comFactory4pComVFSServiceImpl struct {
 
-    mPrototype * service0xa10cab.VFSServiceImpl
+    mPrototype * service0xe6dbe2.VFSServiceImpl
 
 	
 	mHandlersSelector config.InjectionSelector
@@ -2043,12 +2043,12 @@ func (inst * comFactory4pComVFSServiceImpl) init() application.ComponentFactory 
     return inst
 }
 
-func (inst * comFactory4pComVFSServiceImpl) newObject() * service0xa10cab.VFSServiceImpl {
-	return & service0xa10cab.VFSServiceImpl {}
+func (inst * comFactory4pComVFSServiceImpl) newObject() * service0xe6dbe2.VFSServiceImpl {
+	return & service0xe6dbe2.VFSServiceImpl {}
 }
 
-func (inst * comFactory4pComVFSServiceImpl) castObject(instance application.ComponentInstance) * service0xa10cab.VFSServiceImpl {
-	return instance.Get().(*service0xa10cab.VFSServiceImpl)
+func (inst * comFactory4pComVFSServiceImpl) castObject(instance application.ComponentInstance) * service0xe6dbe2.VFSServiceImpl {
+	return instance.Get().(*service0xe6dbe2.VFSServiceImpl)
 }
 
 func (inst * comFactory4pComVFSServiceImpl) GetPrototype() lang.Object {
@@ -2080,11 +2080,11 @@ func (inst * comFactory4pComVFSServiceImpl) Inject(instance application.Componen
 }
 
 //getterForFieldHandlersSelector
-func (inst * comFactory4pComVFSServiceImpl) getterForFieldHandlersSelector (context application.InstanceContext) []vfs0xa225e7.Handler {
+func (inst * comFactory4pComVFSServiceImpl) getterForFieldHandlersSelector (context application.InstanceContext) []vfs0x1fe708.Handler {
 	list1 := inst.mHandlersSelector.GetList(context)
-	list2 := make([]vfs0xa225e7.Handler, 0, len(list1))
+	list2 := make([]vfs0x1fe708.Handler, 0, len(list1))
 	for _, item1 := range list1 {
-		item2, ok := item1.(vfs0xa225e7.Handler)
+		item2, ok := item1.(vfs0x1fe708.Handler)
 		if ok {
 			list2 = append(list2, item2)
 		}
@@ -2093,17 +2093,17 @@ func (inst * comFactory4pComVFSServiceImpl) getterForFieldHandlersSelector (cont
 }
 
 //getterForFieldContextSelector
-func (inst * comFactory4pComVFSServiceImpl) getterForFieldContextSelector (context application.InstanceContext) vfs0xa225e7.Context {
+func (inst * comFactory4pComVFSServiceImpl) getterForFieldContextSelector (context application.InstanceContext) vfs0x1fe708.Context {
 
 	o1 := inst.mContextSelector.GetOne(context)
-	o2, ok := o1.(vfs0xa225e7.Context)
+	o2, ok := o1.(vfs0x1fe708.Context)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
 		eb.Set("com", "vfs-service")
 		eb.Set("field", "Context")
 		eb.Set("type1", "?")
-		eb.Set("type2", "vfs0xa225e7.Context")
+		eb.Set("type2", "vfs0x1fe708.Context")
 		context.HandleError(eb.Create())
 		return nil
 	}
@@ -2114,10 +2114,10 @@ func (inst * comFactory4pComVFSServiceImpl) getterForFieldContextSelector (conte
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComCommandController : the factory of component: com26-controller0x290ce7.CommandController
+// comFactory4pComCommandController : the factory of component: com26-controller0xe6531e.CommandController
 type comFactory4pComCommandController struct {
 
-    mPrototype * controller0x290ce7.CommandController
+    mPrototype * controller0xe6531e.CommandController
 
 	
 	mServiceSelector config.InjectionSelector
@@ -2134,12 +2134,12 @@ func (inst * comFactory4pComCommandController) init() application.ComponentFacto
     return inst
 }
 
-func (inst * comFactory4pComCommandController) newObject() * controller0x290ce7.CommandController {
-	return & controller0x290ce7.CommandController {}
+func (inst * comFactory4pComCommandController) newObject() * controller0xe6531e.CommandController {
+	return & controller0xe6531e.CommandController {}
 }
 
-func (inst * comFactory4pComCommandController) castObject(instance application.ComponentInstance) * controller0x290ce7.CommandController {
-	return instance.Get().(*controller0x290ce7.CommandController)
+func (inst * comFactory4pComCommandController) castObject(instance application.ComponentInstance) * controller0xe6531e.CommandController {
+	return instance.Get().(*controller0xe6531e.CommandController)
 }
 
 func (inst * comFactory4pComCommandController) GetPrototype() lang.Object {
@@ -2170,17 +2170,17 @@ func (inst * comFactory4pComCommandController) Inject(instance application.Compo
 }
 
 //getterForFieldServiceSelector
-func (inst * comFactory4pComCommandController) getterForFieldServiceSelector (context application.InstanceContext) service0xa10cab.CommandService {
+func (inst * comFactory4pComCommandController) getterForFieldServiceSelector (context application.InstanceContext) service0xe6dbe2.CommandService {
 
 	o1 := inst.mServiceSelector.GetOne(context)
-	o2, ok := o1.(service0xa10cab.CommandService)
+	o2, ok := o1.(service0xe6dbe2.CommandService)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "com26-controller0x290ce7.CommandController")
+		eb.Set("com", "com26-controller0xe6531e.CommandController")
 		eb.Set("field", "Service")
 		eb.Set("type1", "?")
-		eb.Set("type2", "service0xa10cab.CommandService")
+		eb.Set("type2", "service0xe6dbe2.CommandService")
 		context.HandleError(eb.Create())
 		return nil
 	}
@@ -2191,10 +2191,10 @@ func (inst * comFactory4pComCommandController) getterForFieldServiceSelector (co
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComDBAController : the factory of component: com27-controller0x290ce7.DBAController
+// comFactory4pComDBAController : the factory of component: com27-controller0xe6531e.DBAController
 type comFactory4pComDBAController struct {
 
-    mPrototype * controller0x290ce7.DBAController
+    mPrototype * controller0xe6531e.DBAController
 
 	
 	mServiceSelector config.InjectionSelector
@@ -2211,12 +2211,12 @@ func (inst * comFactory4pComDBAController) init() application.ComponentFactory {
     return inst
 }
 
-func (inst * comFactory4pComDBAController) newObject() * controller0x290ce7.DBAController {
-	return & controller0x290ce7.DBAController {}
+func (inst * comFactory4pComDBAController) newObject() * controller0xe6531e.DBAController {
+	return & controller0xe6531e.DBAController {}
 }
 
-func (inst * comFactory4pComDBAController) castObject(instance application.ComponentInstance) * controller0x290ce7.DBAController {
-	return instance.Get().(*controller0x290ce7.DBAController)
+func (inst * comFactory4pComDBAController) castObject(instance application.ComponentInstance) * controller0xe6531e.DBAController {
+	return instance.Get().(*controller0xe6531e.DBAController)
 }
 
 func (inst * comFactory4pComDBAController) GetPrototype() lang.Object {
@@ -2247,17 +2247,17 @@ func (inst * comFactory4pComDBAController) Inject(instance application.Component
 }
 
 //getterForFieldServiceSelector
-func (inst * comFactory4pComDBAController) getterForFieldServiceSelector (context application.InstanceContext) service0xa10cab.DBAService {
+func (inst * comFactory4pComDBAController) getterForFieldServiceSelector (context application.InstanceContext) service0xe6dbe2.DBAService {
 
 	o1 := inst.mServiceSelector.GetOne(context)
-	o2, ok := o1.(service0xa10cab.DBAService)
+	o2, ok := o1.(service0xe6dbe2.DBAService)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "com27-controller0x290ce7.DBAController")
+		eb.Set("com", "com27-controller0xe6531e.DBAController")
 		eb.Set("field", "Service")
 		eb.Set("type1", "?")
-		eb.Set("type2", "service0xa10cab.DBAService")
+		eb.Set("type2", "service0xe6dbe2.DBAService")
 		context.HandleError(eb.Create())
 		return nil
 	}
@@ -2268,10 +2268,10 @@ func (inst * comFactory4pComDBAController) getterForFieldServiceSelector (contex
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComHTTPErrorController : the factory of component: com28-controller0x290ce7.HTTPErrorController
+// comFactory4pComHTTPErrorController : the factory of component: com28-controller0xe6531e.HTTPErrorController
 type comFactory4pComHTTPErrorController struct {
 
-    mPrototype * controller0x290ce7.HTTPErrorController
+    mPrototype * controller0xe6531e.HTTPErrorController
 
 	
 
@@ -2286,12 +2286,12 @@ func (inst * comFactory4pComHTTPErrorController) init() application.ComponentFac
     return inst
 }
 
-func (inst * comFactory4pComHTTPErrorController) newObject() * controller0x290ce7.HTTPErrorController {
-	return & controller0x290ce7.HTTPErrorController {}
+func (inst * comFactory4pComHTTPErrorController) newObject() * controller0xe6531e.HTTPErrorController {
+	return & controller0xe6531e.HTTPErrorController {}
 }
 
-func (inst * comFactory4pComHTTPErrorController) castObject(instance application.ComponentInstance) * controller0x290ce7.HTTPErrorController {
-	return instance.Get().(*controller0x290ce7.HTTPErrorController)
+func (inst * comFactory4pComHTTPErrorController) castObject(instance application.ComponentInstance) * controller0xe6531e.HTTPErrorController {
+	return instance.Get().(*controller0xe6531e.HTTPErrorController)
 }
 
 func (inst * comFactory4pComHTTPErrorController) GetPrototype() lang.Object {
@@ -2322,10 +2322,10 @@ func (inst * comFactory4pComHTTPErrorController) Inject(instance application.Com
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComExampleController : the factory of component: com29-controller0x290ce7.ExampleController
+// comFactory4pComExampleController : the factory of component: com29-controller0xe6531e.ExampleController
 type comFactory4pComExampleController struct {
 
-    mPrototype * controller0x290ce7.ExampleController
+    mPrototype * controller0xe6531e.ExampleController
 
 	
 
@@ -2340,12 +2340,12 @@ func (inst * comFactory4pComExampleController) init() application.ComponentFacto
     return inst
 }
 
-func (inst * comFactory4pComExampleController) newObject() * controller0x290ce7.ExampleController {
-	return & controller0x290ce7.ExampleController {}
+func (inst * comFactory4pComExampleController) newObject() * controller0xe6531e.ExampleController {
+	return & controller0xe6531e.ExampleController {}
 }
 
-func (inst * comFactory4pComExampleController) castObject(instance application.ComponentInstance) * controller0x290ce7.ExampleController {
-	return instance.Get().(*controller0x290ce7.ExampleController)
+func (inst * comFactory4pComExampleController) castObject(instance application.ComponentInstance) * controller0xe6531e.ExampleController {
+	return instance.Get().(*controller0xe6531e.ExampleController)
 }
 
 func (inst * comFactory4pComExampleController) GetPrototype() lang.Object {
@@ -2376,10 +2376,10 @@ func (inst * comFactory4pComExampleController) Inject(instance application.Compo
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComFileSystemController : the factory of component: com30-controller0x290ce7.FileSystemController
+// comFactory4pComFileSystemController : the factory of component: com30-controller0xe6531e.FileSystemController
 type comFactory4pComFileSystemController struct {
 
-    mPrototype * controller0x290ce7.FileSystemController
+    mPrototype * controller0xe6531e.FileSystemController
 
 	
 	mServiceSelector config.InjectionSelector
@@ -2396,12 +2396,12 @@ func (inst * comFactory4pComFileSystemController) init() application.ComponentFa
     return inst
 }
 
-func (inst * comFactory4pComFileSystemController) newObject() * controller0x290ce7.FileSystemController {
-	return & controller0x290ce7.FileSystemController {}
+func (inst * comFactory4pComFileSystemController) newObject() * controller0xe6531e.FileSystemController {
+	return & controller0xe6531e.FileSystemController {}
 }
 
-func (inst * comFactory4pComFileSystemController) castObject(instance application.ComponentInstance) * controller0x290ce7.FileSystemController {
-	return instance.Get().(*controller0x290ce7.FileSystemController)
+func (inst * comFactory4pComFileSystemController) castObject(instance application.ComponentInstance) * controller0xe6531e.FileSystemController {
+	return instance.Get().(*controller0xe6531e.FileSystemController)
 }
 
 func (inst * comFactory4pComFileSystemController) GetPrototype() lang.Object {
@@ -2432,17 +2432,17 @@ func (inst * comFactory4pComFileSystemController) Inject(instance application.Co
 }
 
 //getterForFieldServiceSelector
-func (inst * comFactory4pComFileSystemController) getterForFieldServiceSelector (context application.InstanceContext) service0xa10cab.FileSystemService {
+func (inst * comFactory4pComFileSystemController) getterForFieldServiceSelector (context application.InstanceContext) service0xe6dbe2.FileSystemService {
 
 	o1 := inst.mServiceSelector.GetOne(context)
-	o2, ok := o1.(service0xa10cab.FileSystemService)
+	o2, ok := o1.(service0xe6dbe2.FileSystemService)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "com30-controller0x290ce7.FileSystemController")
+		eb.Set("com", "com30-controller0xe6531e.FileSystemController")
 		eb.Set("field", "Service")
 		eb.Set("type1", "?")
-		eb.Set("type2", "service0xa10cab.FileSystemService")
+		eb.Set("type2", "service0xe6dbe2.FileSystemService")
 		context.HandleError(eb.Create())
 		return nil
 	}
@@ -2453,10 +2453,10 @@ func (inst * comFactory4pComFileSystemController) getterForFieldServiceSelector 
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComPlansController : the factory of component: com31-controller0x290ce7.PlansController
+// comFactory4pComPlansController : the factory of component: com31-controller0xe6531e.PlansController
 type comFactory4pComPlansController struct {
 
-    mPrototype * controller0x290ce7.PlansController
+    mPrototype * controller0xe6531e.PlansController
 
 	
 
@@ -2471,12 +2471,12 @@ func (inst * comFactory4pComPlansController) init() application.ComponentFactory
     return inst
 }
 
-func (inst * comFactory4pComPlansController) newObject() * controller0x290ce7.PlansController {
-	return & controller0x290ce7.PlansController {}
+func (inst * comFactory4pComPlansController) newObject() * controller0xe6531e.PlansController {
+	return & controller0xe6531e.PlansController {}
 }
 
-func (inst * comFactory4pComPlansController) castObject(instance application.ComponentInstance) * controller0x290ce7.PlansController {
-	return instance.Get().(*controller0x290ce7.PlansController)
+func (inst * comFactory4pComPlansController) castObject(instance application.ComponentInstance) * controller0xe6531e.PlansController {
+	return instance.Get().(*controller0xe6531e.PlansController)
 }
 
 func (inst * comFactory4pComPlansController) GetPrototype() lang.Object {
@@ -2507,10 +2507,10 @@ func (inst * comFactory4pComPlansController) Inject(instance application.Compone
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComRepositoriesController : the factory of component: com32-controller0x290ce7.RepositoriesController
+// comFactory4pComRepositoriesController : the factory of component: com32-controller0xe6531e.RepositoriesController
 type comFactory4pComRepositoriesController struct {
 
-    mPrototype * controller0x290ce7.RepositoriesController
+    mPrototype * controller0xe6531e.RepositoriesController
 
 	
 	mServiceSelector config.InjectionSelector
@@ -2527,12 +2527,12 @@ func (inst * comFactory4pComRepositoriesController) init() application.Component
     return inst
 }
 
-func (inst * comFactory4pComRepositoriesController) newObject() * controller0x290ce7.RepositoriesController {
-	return & controller0x290ce7.RepositoriesController {}
+func (inst * comFactory4pComRepositoriesController) newObject() * controller0xe6531e.RepositoriesController {
+	return & controller0xe6531e.RepositoriesController {}
 }
 
-func (inst * comFactory4pComRepositoriesController) castObject(instance application.ComponentInstance) * controller0x290ce7.RepositoriesController {
-	return instance.Get().(*controller0x290ce7.RepositoriesController)
+func (inst * comFactory4pComRepositoriesController) castObject(instance application.ComponentInstance) * controller0xe6531e.RepositoriesController {
+	return instance.Get().(*controller0xe6531e.RepositoriesController)
 }
 
 func (inst * comFactory4pComRepositoriesController) GetPrototype() lang.Object {
@@ -2563,17 +2563,17 @@ func (inst * comFactory4pComRepositoriesController) Inject(instance application.
 }
 
 //getterForFieldServiceSelector
-func (inst * comFactory4pComRepositoriesController) getterForFieldServiceSelector (context application.InstanceContext) service0xa10cab.RepositoryService {
+func (inst * comFactory4pComRepositoriesController) getterForFieldServiceSelector (context application.InstanceContext) service0xe6dbe2.RepositoryService {
 
 	o1 := inst.mServiceSelector.GetOne(context)
-	o2, ok := o1.(service0xa10cab.RepositoryService)
+	o2, ok := o1.(service0xe6dbe2.RepositoryService)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "com32-controller0x290ce7.RepositoriesController")
+		eb.Set("com", "com32-controller0xe6531e.RepositoriesController")
 		eb.Set("field", "Service")
 		eb.Set("type1", "?")
-		eb.Set("type2", "service0xa10cab.RepositoryService")
+		eb.Set("type2", "service0xe6dbe2.RepositoryService")
 		context.HandleError(eb.Create())
 		return nil
 	}
@@ -2584,10 +2584,10 @@ func (inst * comFactory4pComRepositoriesController) getterForFieldServiceSelecto
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComSecurityGateController : the factory of component: com33-controller0x290ce7.SecurityGateController
+// comFactory4pComSecurityGateController : the factory of component: com33-controller0xe6531e.SecurityGateController
 type comFactory4pComSecurityGateController struct {
 
-    mPrototype * controller0x290ce7.SecurityGateController
+    mPrototype * controller0xe6531e.SecurityGateController
 
 	
 	mBindSelector config.InjectionSelector
@@ -2604,12 +2604,12 @@ func (inst * comFactory4pComSecurityGateController) init() application.Component
     return inst
 }
 
-func (inst * comFactory4pComSecurityGateController) newObject() * controller0x290ce7.SecurityGateController {
-	return & controller0x290ce7.SecurityGateController {}
+func (inst * comFactory4pComSecurityGateController) newObject() * controller0xe6531e.SecurityGateController {
+	return & controller0xe6531e.SecurityGateController {}
 }
 
-func (inst * comFactory4pComSecurityGateController) castObject(instance application.ComponentInstance) * controller0x290ce7.SecurityGateController {
-	return instance.Get().(*controller0x290ce7.SecurityGateController)
+func (inst * comFactory4pComSecurityGateController) castObject(instance application.ComponentInstance) * controller0xe6531e.SecurityGateController {
+	return instance.Get().(*controller0xe6531e.SecurityGateController)
 }
 
 func (inst * comFactory4pComSecurityGateController) GetPrototype() lang.Object {
@@ -2648,10 +2648,10 @@ func (inst * comFactory4pComSecurityGateController) getterForFieldBindSelector (
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComTasksController : the factory of component: com34-controller0x290ce7.TasksController
+// comFactory4pComTasksController : the factory of component: com34-controller0xe6531e.TasksController
 type comFactory4pComTasksController struct {
 
-    mPrototype * controller0x290ce7.TasksController
+    mPrototype * controller0xe6531e.TasksController
 
 	
 	mTasksSelector config.InjectionSelector
@@ -2668,12 +2668,12 @@ func (inst * comFactory4pComTasksController) init() application.ComponentFactory
     return inst
 }
 
-func (inst * comFactory4pComTasksController) newObject() * controller0x290ce7.TasksController {
-	return & controller0x290ce7.TasksController {}
+func (inst * comFactory4pComTasksController) newObject() * controller0xe6531e.TasksController {
+	return & controller0xe6531e.TasksController {}
 }
 
-func (inst * comFactory4pComTasksController) castObject(instance application.ComponentInstance) * controller0x290ce7.TasksController {
-	return instance.Get().(*controller0x290ce7.TasksController)
+func (inst * comFactory4pComTasksController) castObject(instance application.ComponentInstance) * controller0xe6531e.TasksController {
+	return instance.Get().(*controller0xe6531e.TasksController)
 }
 
 func (inst * comFactory4pComTasksController) GetPrototype() lang.Object {
@@ -2704,17 +2704,17 @@ func (inst * comFactory4pComTasksController) Inject(instance application.Compone
 }
 
 //getterForFieldTasksSelector
-func (inst * comFactory4pComTasksController) getterForFieldTasksSelector (context application.InstanceContext) service0xa10cab.TaskService {
+func (inst * comFactory4pComTasksController) getterForFieldTasksSelector (context application.InstanceContext) service0xe6dbe2.TaskService {
 
 	o1 := inst.mTasksSelector.GetOne(context)
-	o2, ok := o1.(service0xa10cab.TaskService)
+	o2, ok := o1.(service0xe6dbe2.TaskService)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "com34-controller0x290ce7.TasksController")
+		eb.Set("com", "com34-controller0xe6531e.TasksController")
 		eb.Set("field", "Tasks")
 		eb.Set("type1", "?")
-		eb.Set("type2", "service0xa10cab.TaskService")
+		eb.Set("type2", "service0xe6dbe2.TaskService")
 		context.HandleError(eb.Create())
 		return nil
 	}
@@ -2725,10 +2725,10 @@ func (inst * comFactory4pComTasksController) getterForFieldTasksSelector (contex
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComUsersController : the factory of component: com35-controller0x290ce7.UsersController
+// comFactory4pComUsersController : the factory of component: com35-controller0xe6531e.UsersController
 type comFactory4pComUsersController struct {
 
-    mPrototype * controller0x290ce7.UsersController
+    mPrototype * controller0xe6531e.UsersController
 
 	
 
@@ -2743,12 +2743,12 @@ func (inst * comFactory4pComUsersController) init() application.ComponentFactory
     return inst
 }
 
-func (inst * comFactory4pComUsersController) newObject() * controller0x290ce7.UsersController {
-	return & controller0x290ce7.UsersController {}
+func (inst * comFactory4pComUsersController) newObject() * controller0xe6531e.UsersController {
+	return & controller0xe6531e.UsersController {}
 }
 
-func (inst * comFactory4pComUsersController) castObject(instance application.ComponentInstance) * controller0x290ce7.UsersController {
-	return instance.Get().(*controller0x290ce7.UsersController)
+func (inst * comFactory4pComUsersController) castObject(instance application.ComponentInstance) * controller0xe6531e.UsersController {
+	return instance.Get().(*controller0xe6531e.UsersController)
 }
 
 func (inst * comFactory4pComUsersController) GetPrototype() lang.Object {

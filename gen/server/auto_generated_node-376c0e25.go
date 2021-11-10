@@ -4,16 +4,16 @@
 package server
 
 import (
-	context0x9ddf49 "github.com/bitwormhole/gie/app/context"
-	dao0x5098d3 "github.com/bitwormhole/gie/app/data/dao"
-	repository0x9fdb90 "github.com/bitwormhole/gie/app/data/repository"
-	store0x5e2bc3 "github.com/bitwormhole/gie/app/data/store"
-	service0xa10cab "github.com/bitwormhole/gie/app/service"
-	commands0x33b0dc "github.com/bitwormhole/gie/app/service/commands"
-	vfs0xa225e7 "github.com/bitwormhole/gie/app/service/vfs"
-	handlers0x6bcb69 "github.com/bitwormhole/gie/app/service/vfs/handlers"
-	controller0x290ce7 "github.com/bitwormhole/gie/app/web/controller"
-	vo0xcb0bb3 "github.com/bitwormhole/gie/app/web/vo"
+	context0xa8bbcb "github.com/bitwormhole/gie/server/context"
+	dao0xadd4a8 "github.com/bitwormhole/gie/server/data/dao"
+	repository0xa05f40 "github.com/bitwormhole/gie/server/data/repository"
+	store0x791fce "github.com/bitwormhole/gie/server/data/store"
+	service0xe6dbe2 "github.com/bitwormhole/gie/server/service"
+	commands0x3b72f4 "github.com/bitwormhole/gie/server/service/commands"
+	vfs0x1fe708 "github.com/bitwormhole/gie/server/service/vfs"
+	handlers0x60c8cf "github.com/bitwormhole/gie/server/service/vfs/handlers"
+	controller0xe6531e "github.com/bitwormhole/gie/server/web/controller"
+	vo0x0f7a27 "github.com/bitwormhole/gie/server/web/vo"
 	ptable0x68126b "github.com/bitwormhole/ptable"
 	cli0xf30272 "github.com/bitwormhole/starter-cli/cli"
 	application0x67f6c5 "github.com/bitwormhole/starter/application"
@@ -22,7 +22,7 @@ import (
 )
 
 type pComEnvironmentImpl struct {
-	instance *context0x9ddf49.EnvironmentImpl
+	instance *context0xa8bbcb.EnvironmentImpl
 	 markup0x23084a.Component `id:"env" initMethod:"Init"`
 	Context application0x67f6c5.Context `inject:"context"`
 	AppHomeDir string `inject:"${application.home.dir}"`
@@ -32,16 +32,16 @@ type pComEnvironmentImpl struct {
 
 
 type pComRepositoryDaoImpl struct {
-	instance *dao0x5098d3.RepositoryDaoImpl
+	instance *dao0xadd4a8.RepositoryDaoImpl
 	 markup0x23084a.Component `id:"repository-dao"`
-	Repo2 repository0x9fdb90.Repository `inject:"#repository-repository"`
+	Repo2 repository0xa05f40.Repository `inject:"#repository-repository"`
 }
 
 
 type pComExampleImpl struct {
-	instance *repository0x9fdb90.ExampleImpl
+	instance *repository0xa05f40.ExampleImpl
 	 markup0x23084a.Component `class:"ptable-repository"`
-	 repository0x9fdb90.BaseRepo ``
+	 repository0xa05f40.BaseRepo ``
 	fid ptable0x68126b.ColumnInt ``
 	f1 ptable0x68126b.ColumnString ``
 	f2 ptable0x68126b.ColumnFloat64 ``
@@ -51,25 +51,25 @@ type pComExampleImpl struct {
 
 
 type pComPermissionImpl struct {
-	instance *repository0x9fdb90.PermissionImpl
+	instance *repository0xa05f40.PermissionImpl
 	 markup0x23084a.Component `class:"ptable-repository"`
-	 repository0x9fdb90.BaseRepo ``
+	 repository0xa05f40.BaseRepo ``
 	columnName ptable0x68126b.ColumnString ``
 	columnAllowRes ptable0x68126b.ColumnString ``
 }
 
 
 type pComPlanImpl struct {
-	instance *repository0x9fdb90.PlanImpl
+	instance *repository0xa05f40.PlanImpl
 	 markup0x23084a.Component `class:"ptable-repository"`
-	 repository0x9fdb90.BaseRepo ``
+	 repository0xa05f40.BaseRepo ``
 }
 
 
 type pComRepositoryImpl struct {
-	instance *repository0x9fdb90.RepositoryImpl
+	instance *repository0xa05f40.RepositoryImpl
 	 markup0x23084a.Component `id:"repository-repository" class:"ptable-repository"`
-	 repository0x9fdb90.BaseRepo ``
+	 repository0xa05f40.BaseRepo ``
 	columnID ptable0x68126b.ColumnString ``
 	columnName ptable0x68126b.ColumnString ``
 	columnAlias ptable0x68126b.ColumnString ``
@@ -81,113 +81,113 @@ type pComRepositoryImpl struct {
 
 
 type pComRoleImpl struct {
-	instance *repository0x9fdb90.RoleImpl
+	instance *repository0xa05f40.RoleImpl
 	 markup0x23084a.Component `class:"ptable-repository"`
-	 repository0x9fdb90.BaseRepo ``
+	 repository0xa05f40.BaseRepo ``
 }
 
 
 type pComTaskImpl struct {
-	instance *repository0x9fdb90.TaskImpl
+	instance *repository0xa05f40.TaskImpl
 	 markup0x23084a.Component `class:"ptable-repository"`
-	 repository0x9fdb90.BaseRepo ``
+	 repository0xa05f40.BaseRepo ``
 	fid ptable0x68126b.ColumnInt ``
 }
 
 
 type pComUserImpl struct {
-	instance *repository0x9fdb90.UserImpl
+	instance *repository0xa05f40.UserImpl
 	 markup0x23084a.Component `class:"ptable-repository"`
-	 repository0x9fdb90.BaseRepo ``
+	 repository0xa05f40.BaseRepo ``
 }
 
 
 type pComDataSource struct {
-	instance *store0x5e2bc3.DataSource
+	instance *store0x791fce.DataSource
 	 markup0x23084a.Component `id:"ptable-data-source" initMethod:"Open" destroyMethod:"Close"`
-	Env context0x9ddf49.Environment `inject:"#env"`
+	Env context0xa8bbcb.Environment `inject:"#env"`
 	Repos []ptable0x68126b.Repository `inject:".ptable-repository"`
 	session ptable0x68126b.Session ``
 }
 
 
 type pComAgentLinkServiceImpl struct {
-	instance *service0xa10cab.AgentLinkServiceImpl
+	instance *service0xe6dbe2.AgentLinkServiceImpl
 	 markup0x23084a.Component `id:"agent-link-service"  initMethod:"Init"`
 	AgentPortMin int `inject:"${gie.agent.port.min}"`
 	AgentPortMax int `inject:"${gie.agent.port.max}"`
-	manager service0xa10cab.InnerAgentLinkManager ``
+	manager service0xe6dbe2.InnerAgentLinkManager ``
 }
 
 
 type pComApplicationUpdateServiceImpl struct {
-	instance *service0xa10cab.ApplicationUpdateServiceImpl
+	instance *service0xe6dbe2.ApplicationUpdateServiceImpl
 	 markup0x23084a.Component `id:"application-update-service" initMethod:"Init"`
-	Env context0x9ddf49.Environment `inject:"#env"`
+	Env context0xa8bbcb.Environment `inject:"#env"`
 }
 
 
 type pComFindRepo struct {
-	instance *commands0x33b0dc.FindRepo
+	instance *commands0x3b72f4.FindRepo
 	 markup0x23084a.Component `class:"cli-handler"`
 }
 
 
 type pComRoots struct {
-	instance *commands0x33b0dc.Roots
+	instance *commands0x3b72f4.Roots
 	 markup0x23084a.Component `class:"cli-handler"`
 }
 
 
 type pComShell struct {
-	instance *commands0x33b0dc.Shell
+	instance *commands0x3b72f4.Shell
 	 markup0x23084a.Component `class:"cli-handler"`
 }
 
 
 type pComCommandServiceImpl struct {
-	instance *service0xa10cab.CommandServiceImpl
+	instance *service0xe6dbe2.CommandServiceImpl
 	 markup0x23084a.Component `id:"command-service"`
 	ClientFactory cli0xf30272.ClientFactory `inject:"#cli-client-factory"`
-	VFS service0xa10cab.VFSService `inject:"#vfs-service"`
-	Tasks service0xa10cab.TaskService `inject:"#task-service"`
+	VFS service0xe6dbe2.VFSService `inject:"#vfs-service"`
+	Tasks service0xe6dbe2.TaskService `inject:"#task-service"`
 }
 
 
 type pComContentTypeServiceImpl struct {
-	instance *service0xa10cab.ContentTypeServiceImpl
+	instance *service0xe6dbe2.ContentTypeServiceImpl
 	 markup0x23084a.Component `id:"content-type-service" initMethod:"Init"`
 	Context application0x67f6c5.Context `inject:"context"`
-	innerFinder *service0xa10cab.InnerMimeTypesFinder ``
+	innerFinder *service0xe6dbe2.InnerMimeTypesFinder ``
 }
 
 
 type pComDBAServiceProxy struct {
-	instance *service0xa10cab.DBAServiceProxy
+	instance *service0xe6dbe2.DBAServiceProxy
 	 markup0x23084a.Component `id:"dba-service"  initMethod:"Init" `
 	Context application0x67f6c5.Context `inject:"context"`
 	Selector string `inject:"${dba.service.selector}"`
-	target service0xa10cab.DBAService ``
+	target service0xe6dbe2.DBAService ``
 }
 
 
 type pComMockDBAService struct {
-	instance *service0xa10cab.MockDBAService
+	instance *service0xe6dbe2.MockDBAService
 	 markup0x23084a.Component `id:"mock-dba-service"`
-	status vo0xcb0bb3.DBA ``
+	status vo0x0f7a27.DBA ``
 }
 
 
 type pComFileSystemServiceImpl struct {
-	instance *service0xa10cab.FileSystemServiceImpl
+	instance *service0xe6dbe2.FileSystemServiceImpl
 	 markup0x23084a.Component `id:"filesystem-service"`
-	VFS service0xa10cab.VFSService `inject:"#vfs-service"`
-	Types service0xa10cab.ContentTypeService `inject:"#content-type-service"`
+	VFS service0xe6dbe2.VFSService `inject:"#vfs-service"`
+	Types service0xe6dbe2.ContentTypeService `inject:"#content-type-service"`
 }
 
 
 type pComGuiService struct {
-	instance *service0xa10cab.GuiService
+	instance *service0xe6dbe2.GuiService
 	 markup0x23084a.Component `id:"gui-service" initMethod:"Init"`
 	ClientFactory cli0xf30272.ClientFactory `inject:"#cli-client-factory"`
 	Port int `inject:"${server.port}"`
@@ -195,101 +195,101 @@ type pComGuiService struct {
 
 
 type pComRepositoryServiceImpl struct {
-	instance *service0xa10cab.RepositoryServiceImpl
+	instance *service0xe6dbe2.RepositoryServiceImpl
 	 markup0x23084a.Component `id:"repository-service"`
-	Dao dao0x5098d3.RepositoryDAO `inject:"#repository-dao"`
+	Dao dao0xadd4a8.RepositoryDAO `inject:"#repository-dao"`
 }
 
 
 type pComTaskServiceImpl struct {
-	instance *service0xa10cab.TaskServiceImpl
+	instance *service0xe6dbe2.TaskServiceImpl
 	 markup0x23084a.Component `id:"task-service"`
 }
 
 
 type pComRootHandler struct {
-	instance *handlers0x6bcb69.RootHandler
+	instance *handlers0x60c8cf.RootHandler
 	 markup0x23084a.Component `class:"vfs-handler"`
 }
 
 
 type pComContextImpl struct {
-	instance *vfs0xa225e7.ContextImpl
+	instance *vfs0x1fe708.ContextImpl
 	 markup0x23084a.Component `id:"vfs-context"`
-	handlerTable map[string]vfs0xa225e7.Handler ``
+	handlerTable map[string]vfs0x1fe708.Handler ``
 }
 
 
 type pComVFSServiceImpl struct {
-	instance *service0xa10cab.VFSServiceImpl
+	instance *service0xe6dbe2.VFSServiceImpl
 	 markup0x23084a.Component `id:"vfs-service" initMethod:"Init"`
-	Handlers []vfs0xa225e7.Handler `inject:".vfs-handler"`
-	Context vfs0xa225e7.Context `inject:"#vfs-context"`
+	Handlers []vfs0x1fe708.Handler `inject:".vfs-handler"`
+	Context vfs0x1fe708.Context `inject:"#vfs-context"`
 }
 
 
 type pComCommandController struct {
-	instance *controller0x290ce7.CommandController
+	instance *controller0xe6531e.CommandController
 	 markup0x23084a.RestController `class:"rest-controller"`
-	Service service0xa10cab.CommandService `inject:"#command-service"`
+	Service service0xe6dbe2.CommandService `inject:"#command-service"`
 }
 
 
 type pComDBAController struct {
-	instance *controller0x290ce7.DBAController
+	instance *controller0xe6531e.DBAController
 	 markup0x23084a.Component `class:"rest-controller"`
-	Service service0xa10cab.DBAService `inject:"#dba-service"`
+	Service service0xe6dbe2.DBAService `inject:"#dba-service"`
 }
 
 
 type pComHTTPErrorController struct {
-	instance *controller0x290ce7.HTTPErrorController
+	instance *controller0xe6531e.HTTPErrorController
 	 markup0x23084a.RestController `class:"rest-controller"`
 }
 
 
 type pComExampleController struct {
-	instance *controller0x290ce7.ExampleController
+	instance *controller0xe6531e.ExampleController
 	 markup0x23084a.RestController `class:"rest-controller"`
 }
 
 
 type pComFileSystemController struct {
-	instance *controller0x290ce7.FileSystemController
+	instance *controller0xe6531e.FileSystemController
 	 markup0x23084a.RestController `class:"rest-controller"`
-	Service service0xa10cab.FileSystemService `inject:"#filesystem-service"`
+	Service service0xe6dbe2.FileSystemService `inject:"#filesystem-service"`
 }
 
 
 type pComPlansController struct {
-	instance *controller0x290ce7.PlansController
+	instance *controller0xe6531e.PlansController
 	 markup0x23084a.RestController `class:"rest-controller"`
 }
 
 
 type pComRepositoriesController struct {
-	instance *controller0x290ce7.RepositoriesController
+	instance *controller0xe6531e.RepositoriesController
 	 markup0x23084a.RestController `class:"rest-controller"`
-	Service service0xa10cab.RepositoryService `inject:"#repository-service"`
+	Service service0xe6dbe2.RepositoryService `inject:"#repository-service"`
 }
 
 
 type pComSecurityGateController struct {
-	instance *controller0x290ce7.SecurityGateController
+	instance *controller0xe6531e.SecurityGateController
 	 markup0x23084a.Component `class:"rest-controller"`
 	Bind string `inject:"${server.bind}"`
 }
 
 
 type pComTasksController struct {
-	instance *controller0x290ce7.TasksController
+	instance *controller0xe6531e.TasksController
 	 markup0x23084a.RestController `class:"rest-controller"`
-	Tasks service0xa10cab.TaskService `inject:"#task-service"`
+	Tasks service0xe6dbe2.TaskService `inject:"#task-service"`
 }
 
 
 type pComUsersController struct {
-	instance *controller0x290ce7.UsersController
+	instance *controller0xe6531e.UsersController
 	 markup0x23084a.RestController `class:"rest-controller"`
 }
 
