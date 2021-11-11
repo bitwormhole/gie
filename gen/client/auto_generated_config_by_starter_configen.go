@@ -20,45 +20,54 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 	var err error = nil
 	cominfobuilder := config.ComInfo()
 
-	// component: com0-command0x202026.RestartServerCommand
+	// component: com0-command0x202026.HelpAboutCommand
 	cominfobuilder.Next()
-	cominfobuilder.ID("com0-command0x202026.RestartServerCommand").Class("cli-handler").Aliases("").Scope("")
+	cominfobuilder.ID("com0-command0x202026.HelpAboutCommand").Class("cli-handler").Aliases("").Scope("")
+	cominfobuilder.Factory((&comFactory4pComHelpAboutCommand{}).init())
+	err = cominfobuilder.CreateTo(cb)
+	if err != nil {
+		return err
+	}
+
+	// component: com1-command0x202026.RestartServerCommand
+	cominfobuilder.Next()
+	cominfobuilder.ID("com1-command0x202026.RestartServerCommand").Class("cli-handler").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComRestartServerCommand{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com1-command0x202026.RunClientCommand
+	// component: com2-command0x202026.RunClientCommand
 	cominfobuilder.Next()
-	cominfobuilder.ID("com1-command0x202026.RunClientCommand").Class("cli-handler").Aliases("").Scope("")
+	cominfobuilder.ID("com2-command0x202026.RunClientCommand").Class("cli-handler").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComRunClientCommand{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com2-command0x202026.RunServerCommand
+	// component: com3-command0x202026.RunServerCommand
 	cominfobuilder.Next()
-	cominfobuilder.ID("com2-command0x202026.RunServerCommand").Class("cli-handler").Aliases("").Scope("")
+	cominfobuilder.ID("com3-command0x202026.RunServerCommand").Class("cli-handler").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComRunServerCommand{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com3-command0x202026.StartServerCommand
+	// component: com4-command0x202026.StartServerCommand
 	cominfobuilder.Next()
-	cominfobuilder.ID("com3-command0x202026.StartServerCommand").Class("cli-handler").Aliases("").Scope("")
+	cominfobuilder.ID("com4-command0x202026.StartServerCommand").Class("cli-handler").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComStartServerCommand{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com4-command0x202026.StopServerCommand
+	// component: com5-command0x202026.StopServerCommand
 	cominfobuilder.Next()
-	cominfobuilder.ID("com4-command0x202026.StopServerCommand").Class("cli-handler").Aliases("").Scope("")
+	cominfobuilder.ID("com5-command0x202026.StopServerCommand").Class("cli-handler").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComStopServerCommand{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
@@ -74,9 +83,9 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 		return err
 	}
 
-	// component: com6-service0xcd7fed.AutoClientCommandTrigger
+	// component: com7-service0xcd7fed.AutoClientCommandTrigger
 	cominfobuilder.Next()
-	cominfobuilder.ID("com6-service0xcd7fed.AutoClientCommandTrigger").Class("looper").Aliases("").Scope("")
+	cominfobuilder.ID("com7-service0xcd7fed.AutoClientCommandTrigger").Class("looper").Aliases("").Scope("")
 	cominfobuilder.Factory((&comFactory4pComAutoClientCommandTrigger{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
@@ -108,7 +117,71 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComRestartServerCommand : the factory of component: com0-command0x202026.RestartServerCommand
+// comFactory4pComHelpAboutCommand : the factory of component: com0-command0x202026.HelpAboutCommand
+type comFactory4pComHelpAboutCommand struct {
+
+    mPrototype * command0x202026.HelpAboutCommand
+
+	
+	mContextSelector config.InjectionSelector
+
+}
+
+func (inst * comFactory4pComHelpAboutCommand) init() application.ComponentFactory {
+
+	
+	inst.mContextSelector = config.NewInjectionSelector("context",nil)
+
+
+	inst.mPrototype = inst.newObject()
+    return inst
+}
+
+func (inst * comFactory4pComHelpAboutCommand) newObject() * command0x202026.HelpAboutCommand {
+	return & command0x202026.HelpAboutCommand {}
+}
+
+func (inst * comFactory4pComHelpAboutCommand) castObject(instance application.ComponentInstance) * command0x202026.HelpAboutCommand {
+	return instance.Get().(*command0x202026.HelpAboutCommand)
+}
+
+func (inst * comFactory4pComHelpAboutCommand) GetPrototype() lang.Object {
+	return inst.mPrototype
+}
+
+func (inst * comFactory4pComHelpAboutCommand) NewInstance() application.ComponentInstance {
+	return config.SimpleInstance(inst, inst.newObject())
+}
+
+func (inst * comFactory4pComHelpAboutCommand) AfterService() application.ComponentAfterService {
+	return inst
+}
+
+func (inst * comFactory4pComHelpAboutCommand) Init(instance application.ComponentInstance) error {
+	return nil
+}
+
+func (inst * comFactory4pComHelpAboutCommand) Destroy(instance application.ComponentInstance) error {
+	return nil
+}
+
+func (inst * comFactory4pComHelpAboutCommand) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
+	
+	obj := inst.castObject(instance)
+	obj.Context = inst.getterForFieldContextSelector(context)
+	return context.LastError()
+}
+
+//getterForFieldContextSelector
+func (inst * comFactory4pComHelpAboutCommand) getterForFieldContextSelector (context application.InstanceContext) application.Context {
+    return context.Context()
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+// comFactory4pComRestartServerCommand : the factory of component: com1-command0x202026.RestartServerCommand
 type comFactory4pComRestartServerCommand struct {
 
     mPrototype * command0x202026.RestartServerCommand
@@ -179,7 +252,7 @@ func (inst * comFactory4pComRestartServerCommand) getterForFieldServerController
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "com0-command0x202026.RestartServerCommand")
+		eb.Set("com", "com1-command0x202026.RestartServerCommand")
 		eb.Set("field", "ServerController")
 		eb.Set("type1", "?")
 		eb.Set("type2", "*service0xcd7fed.ServerController")
@@ -193,7 +266,7 @@ func (inst * comFactory4pComRestartServerCommand) getterForFieldServerController
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComRunClientCommand : the factory of component: com1-command0x202026.RunClientCommand
+// comFactory4pComRunClientCommand : the factory of component: com2-command0x202026.RunClientCommand
 type comFactory4pComRunClientCommand struct {
 
     mPrototype * command0x202026.RunClientCommand
@@ -264,7 +337,7 @@ func (inst * comFactory4pComRunClientCommand) getterForFieldAgentBootServiceSele
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "com1-command0x202026.RunClientCommand")
+		eb.Set("com", "com2-command0x202026.RunClientCommand")
 		eb.Set("field", "AgentBootService")
 		eb.Set("type1", "?")
 		eb.Set("type2", "service0xcd7fed.AgentBootService")
@@ -278,7 +351,7 @@ func (inst * comFactory4pComRunClientCommand) getterForFieldAgentBootServiceSele
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComRunServerCommand : the factory of component: com2-command0x202026.RunServerCommand
+// comFactory4pComRunServerCommand : the factory of component: com3-command0x202026.RunServerCommand
 type comFactory4pComRunServerCommand struct {
 
     mPrototype * command0x202026.RunServerCommand
@@ -344,7 +417,7 @@ func (inst * comFactory4pComRunServerCommand) getterForFieldServerControllerSele
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "com2-command0x202026.RunServerCommand")
+		eb.Set("com", "com3-command0x202026.RunServerCommand")
 		eb.Set("field", "ServerController")
 		eb.Set("type1", "?")
 		eb.Set("type2", "*service0xcd7fed.ServerController")
@@ -363,7 +436,7 @@ func (inst * comFactory4pComRunServerCommand) getterForFieldContextSelector (con
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComStartServerCommand : the factory of component: com3-command0x202026.StartServerCommand
+// comFactory4pComStartServerCommand : the factory of component: com4-command0x202026.StartServerCommand
 type comFactory4pComStartServerCommand struct {
 
     mPrototype * command0x202026.StartServerCommand
@@ -429,7 +502,7 @@ func (inst * comFactory4pComStartServerCommand) getterForFieldServerControllerSe
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "com3-command0x202026.StartServerCommand")
+		eb.Set("com", "com4-command0x202026.StartServerCommand")
 		eb.Set("field", "ServerController")
 		eb.Set("type1", "?")
 		eb.Set("type2", "*service0xcd7fed.ServerController")
@@ -448,7 +521,7 @@ func (inst * comFactory4pComStartServerCommand) getterForFieldContextSelector (c
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComStopServerCommand : the factory of component: com4-command0x202026.StopServerCommand
+// comFactory4pComStopServerCommand : the factory of component: com5-command0x202026.StopServerCommand
 type comFactory4pComStopServerCommand struct {
 
     mPrototype * command0x202026.StopServerCommand
@@ -514,7 +587,7 @@ func (inst * comFactory4pComStopServerCommand) getterForFieldServerControllerSel
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "com4-command0x202026.StopServerCommand")
+		eb.Set("com", "com5-command0x202026.StopServerCommand")
 		eb.Set("field", "ServerController")
 		eb.Set("type1", "?")
 		eb.Set("type2", "*service0xcd7fed.ServerController")
@@ -605,7 +678,7 @@ func (inst * comFactory4pComAgentBootServiceImpl) getterForFieldServerPortSelect
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComAutoClientCommandTrigger : the factory of component: com6-service0xcd7fed.AutoClientCommandTrigger
+// comFactory4pComAutoClientCommandTrigger : the factory of component: com7-service0xcd7fed.AutoClientCommandTrigger
 type comFactory4pComAutoClientCommandTrigger struct {
 
     mPrototype * service0xcd7fed.AutoClientCommandTrigger
@@ -679,7 +752,7 @@ func (inst * comFactory4pComAutoClientCommandTrigger) getterForFieldClientFactor
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "com6-service0xcd7fed.AutoClientCommandTrigger")
+		eb.Set("com", "com7-service0xcd7fed.AutoClientCommandTrigger")
 		eb.Set("field", "ClientFactory")
 		eb.Set("type1", "?")
 		eb.Set("type2", "cli0xf30272.ClientFactory")

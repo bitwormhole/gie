@@ -11,6 +11,13 @@ import (
 	markup0x23084a "github.com/bitwormhole/starter/markup"
 )
 
+type pComHelpAboutCommand struct {
+	instance *command0x202026.HelpAboutCommand
+	 markup0x23084a.Component `class:"cli-handler"`
+	Context application0x67f6c5.Context `inject:"context"`
+}
+
+
 type pComRestartServerCommand struct {
 	instance *command0x202026.RestartServerCommand
 	 markup0x23084a.Component `class:"cli-handler"`

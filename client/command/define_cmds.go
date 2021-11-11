@@ -7,7 +7,9 @@ const (
 	RestartServer = "restart:server"
 	RunServer     = "run:server" // the daemon for server
 
-	RunClient   = "run:client"
+	RunClient = "run:client"
+
 	HelpAbout   = "help:about"
+	HelpVersion = "help:version"
 	HelpContent = "help:content"
 )
