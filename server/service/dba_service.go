@@ -13,6 +13,7 @@ import (
 // api
 
 type DBAService interface {
+	StartMigration() error
 	StartBackup() error
 	StopBackup() error
 	GetStatus(o *vo.DBA) error
@@ -57,6 +58,10 @@ func (inst *DBAServiceProxy) StopBackup() error {
 	return inst.target.StopBackup()
 }
 
+func (inst *DBAServiceProxy) StartMigration() error {
+	return inst.target.StartMigration()
+}
+
 func (inst *DBAServiceProxy) GetStatus(o *vo.DBA) error {
 	return inst.target.GetStatus(o)
 }
@@ -82,6 +87,14 @@ func (inst *MockDBAService) StopBackup() error {
 
 	inst.status.Cancelling = true
 	inst.status.Running = false
+
+	return nil
+}
+
+func (inst *MockDBAService) StartMigration() error {
+
+	inst.status.Cancelling = false
+	inst.status.Running = true
 
 	return nil
 }

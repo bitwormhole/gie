@@ -18,6 +18,7 @@ type CommandService interface {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+// CommandServiceImpl ...
 type CommandServiceImpl struct {
 	markup.Component `id:"command-service"`
 
@@ -55,6 +56,7 @@ func (inst *CommandServiceImpl) prepareConsole(cc context.Context, o1 *dto.Comma
 	return buffers, nil
 }
 
+// Execute ...
 func (inst *CommandServiceImpl) Execute(ctx context.Context, o1 *dto.Command, o2 *dto.Command) error {
 	buffers, err := inst.prepareConsole(ctx, o1, o2)
 	if err != nil {
@@ -65,6 +67,7 @@ func (inst *CommandServiceImpl) Execute(ctx context.Context, o1 *dto.Command, o2
 	client := inst.ClientFactory.CreateAsyncClient(ctx)
 	promise := client.ExecuteScript(o1.Script)
 	watcher := commandPromiseWatcher{buffers: buffers}
+	watcher.tasks = inst.Tasks
 	watcher.init(ctx, timeout)
 	watcher.watch(promise)
 	return watcher.waitForResult(o2)
@@ -101,13 +104,14 @@ func (inst *commandConsoleBuffers) init() {
 ////////////////////////////////////////////////////////////////////////////////
 
 type commandPromiseWatcher struct {
-	context context.Context
-	tasks   TaskService
-	timeout int64 // in ms
-	done    bool
-	success bool
-	err     error
-	buffers *commandConsoleBuffers
+	context    context.Context
+	tasks      TaskService
+	timeout    int64 // in ms
+	done       bool
+	success    bool
+	err        error
+	buffers    *commandConsoleBuffers
+	taskHolder TaskHolder
 }
 
 func (inst *commandPromiseWatcher) init(ctx context.Context, timeout int64) {
@@ -119,14 +123,36 @@ func (inst *commandPromiseWatcher) init(ctx context.Context, timeout int64) {
 }
 
 func (inst *commandPromiseWatcher) watch(p task.Promise) {
-
 	p.Then(func(result interface{}) {
 		inst.success = true
+		inst.handleTaskOK()
 	}).Catch(func(err error) {
 		inst.err = err
+		inst.handleTaskError(err)
 	}).Finally(func() {
 		inst.done = true
+		inst.handleTaskFinally()
 	})
+}
+
+func (inst *commandPromiseWatcher) handleTaskOK() {
+	// NOP
+}
+
+func (inst *commandPromiseWatcher) handleTaskError(err error) {
+	holder := inst.taskHolder
+	if holder == nil {
+		return
+	}
+	holder.HandleError(err)
+}
+
+func (inst *commandPromiseWatcher) handleTaskFinally() {
+	holder := inst.taskHolder
+	if holder == nil {
+		return
+	}
+	holder.Close()
 }
 
 func (inst *commandPromiseWatcher) sleep(ms int64) {
@@ -164,7 +190,7 @@ func (inst *commandPromiseWatcher) makeResutlForDone(out *dto.Command) error {
 
 func (inst *commandPromiseWatcher) makeResutlForTimeout(out *dto.Command) error {
 
-	out.Output = "(该命令执行时间较长，改为后台运行)"
+	out.Output = "(该命令执行时间较长，已经改为后台运行)"
 
 	task1 := &dto.Task{}
 
@@ -178,8 +204,9 @@ func (inst *commandPromiseWatcher) makeResutlForTimeout(out *dto.Command) error 
 		return err
 	}
 
-	// todo ...
-	holder.GetID()
+	holder.UpdateState(task.StateRunning, 0)
 
+	out.TaskID = holder.GetID()
+	inst.taskHolder = holder
 	return inst.err
 }

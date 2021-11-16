@@ -4,12 +4,14 @@
 package server
 
 import (
+	commands0x7aa8ee "github.com/bitwormhole/gie/server/commands"
 	context0xa8bbcb "github.com/bitwormhole/gie/server/context"
 	dao0xadd4a8 "github.com/bitwormhole/gie/server/data/dao"
 	repository0xa05f40 "github.com/bitwormhole/gie/server/data/repository"
 	store0x791fce "github.com/bitwormhole/gie/server/data/store"
 	service0xe6dbe2 "github.com/bitwormhole/gie/server/service"
-	commands0x3b72f4 "github.com/bitwormhole/gie/server/service/commands"
+	staragent0x33836f "github.com/bitwormhole/gie/server/service/impl/staragent"
+	tasks0x4f8db3 "github.com/bitwormhole/gie/server/service/impl/tasks"
 	vfs0x1fe708 "github.com/bitwormhole/gie/server/service/vfs"
 	handlers0x60c8cf "github.com/bitwormhole/gie/server/service/vfs/handlers"
 	controller0xe6531e "github.com/bitwormhole/gie/server/web/controller"
@@ -20,6 +22,37 @@ import (
 	fs0x8698bb "github.com/bitwormhole/starter/io/fs"
 	markup0x23084a "github.com/bitwormhole/starter/markup"
 )
+
+type pComAbout struct {
+	instance *commands0x7aa8ee.About
+	 markup0x23084a.Component `class:"cli-handler"`
+	Context application0x67f6c5.Context `inject:"context"`
+}
+
+
+type pComFindRepo struct {
+	instance *commands0x7aa8ee.FindRepo
+	 markup0x23084a.Component `class:"cli-handler"`
+}
+
+
+type pComGitProxyCommand struct {
+	instance *commands0x7aa8ee.GitProxyCommand
+	 markup0x23084a.Component `class:"cli-handler"`
+}
+
+
+type pComRoots struct {
+	instance *commands0x7aa8ee.Roots
+	 markup0x23084a.Component `class:"cli-handler"`
+}
+
+
+type pComShell struct {
+	instance *commands0x7aa8ee.Shell
+	 markup0x23084a.Component `class:"cli-handler"`
+}
+
 
 type pComEnvironmentImpl struct {
 	instance *context0xa8bbcb.EnvironmentImpl
@@ -127,24 +160,6 @@ type pComApplicationUpdateServiceImpl struct {
 }
 
 
-type pComFindRepo struct {
-	instance *commands0x3b72f4.FindRepo
-	 markup0x23084a.Component `class:"cli-handler"`
-}
-
-
-type pComRoots struct {
-	instance *commands0x3b72f4.Roots
-	 markup0x23084a.Component `class:"cli-handler"`
-}
-
-
-type pComShell struct {
-	instance *commands0x3b72f4.Shell
-	 markup0x23084a.Component `class:"cli-handler"`
-}
-
-
 type pComCommandServiceImpl struct {
 	instance *service0xe6dbe2.CommandServiceImpl
 	 markup0x23084a.Component `id:"command-service"`
@@ -194,16 +209,23 @@ type pComGuiService struct {
 }
 
 
-type pComRepositoryServiceImpl struct {
-	instance *service0xe6dbe2.RepositoryServiceImpl
-	 markup0x23084a.Component `id:"repository-service"`
-	Dao dao0xadd4a8.RepositoryDAO `inject:"#repository-dao"`
+type pComStarAgentServiceImpl struct {
+	instance *staragent0x33836f.StarAgentServiceImpl
+	 markup0x23084a.Component `initMethod:"Init"`
 }
 
 
 type pComTaskServiceImpl struct {
-	instance *service0xe6dbe2.TaskServiceImpl
-	 markup0x23084a.Component `id:"task-service"`
+	instance *tasks0x4f8db3.TaskServiceImpl
+	 markup0x23084a.Component `id:"task-service" initMethod:"Init"`
+	tm tasks0x4f8db3.MyTaskManager ``
+}
+
+
+type pComRepositoryServiceImpl struct {
+	instance *service0xe6dbe2.RepositoryServiceImpl
+	 markup0x23084a.Component `id:"repository-service"`
+	Dao dao0xadd4a8.RepositoryDAO `inject:"#repository-dao"`
 }
 
 
@@ -261,6 +283,19 @@ type pComFileSystemController struct {
 }
 
 
+type pComHelpAboutController struct {
+	instance *controller0xe6531e.HelpAboutController
+	 markup0x23084a.RestController `class:"rest-controller"`
+}
+
+
+type pComImageController struct {
+	instance *controller0xe6531e.ImageController
+	 markup0x23084a.RestController `class:"rest-controller"`
+	Context application0x67f6c5.Context `inject:"context"`
+}
+
+
 type pComPlansController struct {
 	instance *controller0xe6531e.PlansController
 	 markup0x23084a.RestController `class:"rest-controller"`
@@ -281,6 +316,12 @@ type pComSecurityGateController struct {
 }
 
 
+type pComSystemSettingsController struct {
+	instance *controller0xe6531e.SystemSettingsController
+	 markup0x23084a.RestController `class:"rest-controller"`
+}
+
+
 type pComTasksController struct {
 	instance *controller0xe6531e.TasksController
 	 markup0x23084a.RestController `class:"rest-controller"`
@@ -290,6 +331,12 @@ type pComTasksController struct {
 
 type pComUsersController struct {
 	instance *controller0xe6531e.UsersController
+	 markup0x23084a.RestController `class:"rest-controller"`
+}
+
+
+type pComUserSettingsController struct {
+	instance *controller0xe6531e.UserSettingsController
 	 markup0x23084a.RestController `class:"rest-controller"`
 }
 
